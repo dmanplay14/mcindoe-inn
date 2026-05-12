@@ -1081,12 +1081,12 @@ p  { font-size: 1.0rem; line-height: 1.8; color: var(--text-body); }
   position: absolute;
   inset: 0;
   background: url('../images/vermont-fall.jpg') center / cover no-repeat;
-  opacity: .25;
+  opacity: .55;
 }
 .cta-banner-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(43,74,30,.85), rgba(107,26,26,.6));
+  background: linear-gradient(135deg, rgba(43,74,30,.5), rgba(107,26,26,.35));
 }
 .cta-banner-content {
   position: relative;

@@ -60,6 +60,20 @@
     }
     .guide-section-emoji { font-size: 1.8rem; }
 
+    /* Place card top image */
+    .place-card-img-top {
+      width: 100%;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .place-card-img-top img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
     /* Place cards */
     .places-grid {
       display: grid;
@@ -376,28 +390,34 @@
             </div>
           </article>
 
-          <!-- Harvey's Lake -->
-          <article class="place-card fade-up" id="lakes">
+          <!-- Goodwillie House -->
+          <article class="place-card fade-up">
             <div class="place-card-header">
               <div class="place-card-title">
-                <span class="place-card-icon">🏊</span>
-                <h3>Harvey's Lake Public Beach</h3>
+                <span class="place-card-icon">🏠</span>
+                <h3>Goodwillie House Museum</h3>
               </div>
-              <span class="place-card-dist">~15 min</span>
+              <span class="place-card-dist">~10 min · Barnet Center</span>
             </div>
             <div class="place-card-body">
-              <p class="place-card-category">Swimming &amp; Recreation</p>
-              <p>A 7,000-acre natural gem named after Colonel Alexander Harvey, the Scottish settler
-              who helped found Barnet. The public beach has a sandy shoreline with a shallow sandy
-              bottom — excellent for children and swimmers of all levels. Picnic tables, a small
-              playground, a beach house, and a pavilion make it a perfect summer half-day. And yes —
-              Jacques Cousteau apparently first experimented with underwater breathing here as a
-              boy at summer camp in the early 1920s.</p>
+              <p class="place-card-category">Local History Museum · Underground Railroad · Open by Appointment</p>
+              <p>Built in 1791, the Goodwillie House is one of the oldest surviving homes in
+              Barnet — the residence of Reverend David Goodwillie, the community's first
+              minister and a central figure in shaping the Scottish Presbyterian character
+              of early Barnet. Goodwillie arrived in 1790, helped formally establish the
+              Barnet Center Cemetery in 1791, and became the spiritual anchor of the
+              settler community for generations.</p>
+              <p>The house holds a remarkable secret: a hidden room in the basement believed
+              to have served as a hiding place for freedom seekers on the Underground Railroad.
+              Today the Barnet Historical Society maintains the home as a museum filled with
+              handmade linens, period furniture, kitchen wares, and domestic tools that bring
+              18th-century Vermont life vividly to life.</p>
               <div class="place-card-details">
-                <div class="place-card-detail"><span>📍</span><span>95 Harvey Mountain Road, Barnet, VT 05821</span></div>
-                <div class="place-card-detail"><span>🌐</span><span><a href="http://www.harveyslakebeach.net" target="_blank" rel="noopener" style="color:var(--green-mid);">www.harveyslakebeach.net</a></span></div>
+                <div class="place-card-detail"><span>📍</span><span>26 Goodwillie Road, Barnet Center, VT</span></div>
+                <div class="place-card-detail"><span>🕐</span><span>Open by appointment — contact the Barnet Historical Society</span></div>
+                <div class="place-card-detail"><span>🌐</span><span><a href="https://barnetvt.org/community/historical-society/" target="_blank" rel="noopener" style="color:var(--green-mid);">barnetvt.org</a></span></div>
               </div>
-              <div class="place-card-tip"><strong>Gloria &amp; Staff's tip:</strong> Go on a weekday morning for the best experience — it gets busy on summer weekends. The lake is beautiful for kayaking too.</div>
+              <div class="place-card-tip"><strong>Gloria &amp; Staff's tip:</strong> Call ahead to arrange a visit — it's well worth it. The hidden Underground Railroad room alone makes this one of the most quietly remarkable places in the Northeast Kingdom.</div>
             </div>
           </article>
 
@@ -411,17 +431,23 @@
               <span class="place-card-dist">~5 min</span>
             </div>
             <div class="place-card-body">
-              <p class="place-card-category">Mindfulness &amp; Retreat</p>
+              <p class="place-card-category">Mindfulness &amp; Retreat · Personal Connection</p>
               <p>One of the world's foremost Buddhist meditation centers, located just minutes
-              from the inn. Founded in 1970 by Tibetan meditation master Chögyam Trungpa Rinpoche,
-              Karmê Chöling offers year-round programs and retreats open to the public — from
-              weekend introductions to extended residential study. The grounds and shrine rooms
-              are breathtaking. Even a peaceful walk on the property is worth the short drive.</p>
+              from the inn. Founded in 1970 by Tibetan meditation master Chögyam Trungpa Rinpoche
+              — originally known as <strong>Tail of the Tiger</strong> — Karmê Chöling offers
+              year-round programs and retreats open to the public, from weekend introductions
+              to extended residential study. The grounds and shrine rooms are breathtaking.</p>
+              <p>The inn has a personal connection to this remarkable place: <strong>Chögyam
+              Trungpa Rinpoche stayed with us at McIndoe Falls Inn</strong> while he was
+              establishing the center here in Barnet. One of our inn bedrooms —
+              <strong>Rinpoche's Room</strong> — is where he actually stayed. Guests who
+              come to the inn for retreats at Karmê Chöling are, in a quiet way, walking in
+              very distinguished footsteps.</p>
               <div class="place-card-details">
                 <div class="place-card-detail"><span>📍</span><span>369 Patneaude Lane, Barnet, VT 05821</span></div>
                 <div class="place-card-detail"><span>🌐</span><span><a href="https://www.karmecholing.org" target="_blank" rel="noopener" style="color:var(--green-mid);">www.karmecholing.org</a></span></div>
               </div>
-              <div class="place-card-tip"><strong>Gloria &amp; Staff's tip:</strong> Many guests come to the inn specifically to attend retreats at Karmê Chöling. Check their program calendar well in advance — popular retreats fill up.</div>
+              <div class="place-card-tip"><strong>Gloria &amp; Staff's tip:</strong> Many guests come to the inn specifically to attend retreats at Karmê Chöling. If you're interested in Rinpoche's Room, ask us when you book — it's a one-of-a-kind stay. Check the program calendar well in advance as popular retreats fill up.</div>
             </div>
           </article>
 
@@ -493,6 +519,68 @@
             </div>
           </article>
 
+          <!-- Harvey's Lake -->
+          <article class="place-card fade-up" id="lakes">
+            <div class="place-card-header">
+              <div class="place-card-title">
+                <span class="place-card-icon">🏊</span>
+                <h3>Harvey's Lake Public Beach</h3>
+              </div>
+              <span class="place-card-dist">~20 min</span>
+            </div>
+            <div class="place-card-body">
+              <p class="place-card-category">Swimming · Boating · Fishing</p>
+              <p>One of Vermont's most beautiful natural lakes — a clear, spring-fed glacial lake
+              in West Barnet with a lovely public beach and boat launch. Harvey's Lake is
+              wonderfully uncrowded, clean, and peaceful. A perfect summer afternoon: bring
+              a picnic, a kayak, and a fishing rod. The surrounding hills reflect in the water
+              on calm mornings in a way that will make you want to stay forever.</p>
+              <div class="place-card-details">
+                <div class="place-card-detail"><span>📍</span><span>West Barnet, VT — ~20 min from the inn</span></div>
+                <div class="place-card-detail"><span>🕐</span><span>Open seasonally · Free public access</span></div>
+              </div>
+              <div class="place-card-tip"><strong>Gloria &amp; Staff's tip:</strong> Go on a weekday morning for the full peaceful experience. Bring your own canoe or kayak — the lake is glorious for paddling.</div>
+            </div>
+          </article>
+
+          <!-- Peacham Corner Historic District -->
+          <article class="place-card place-card-featured fade-up">
+            <div class="place-card-img">
+              <img src="images/peacham-corner.jpg" alt="Peacham Corner Historic District, Vermont">
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;">
+              <div class="place-card-header">
+                <div class="place-card-title">
+                  <span class="place-card-icon">🎬</span>
+                  <h3>Peacham Corner Historic District</h3>
+                </div>
+                <span class="place-card-dist">~20 min</span>
+              </div>
+              <div class="place-card-body">
+                <p class="place-card-category">National Historic District · Film Location · Self-Guided</p>
+                <p>Listed on the National Register of Historic Places in 2003, Peacham Corner
+                is one of the most beautifully preserved 18th and 19th-century village centers
+                in all of New England. First settled in 1776 along the Bayley-Hazen Military
+                Road — built during the Revolutionary War — the village grew through the early
+                1800s and then, remarkably, stopped. No Victorian sprawl, no modern intrusion.
+                The result is a village frozen in time: a graceful Congregational Church
+                (completed 1806), the historic Peacham Academy (founded 1797, one of Vermont's
+                first secondary schools), Federal and Greek Revival homes lining quiet roads,
+                and a hillside cemetery with sweeping Northeast Kingdom views.</p>
+                <p>Hollywood has noticed. Peacham's timeless New England character has made it
+                one of Vermont's most-filmed locations:</p>
+                <div class="place-card-details">
+                  <div class="place-card-detail"><span>🎬</span><span><strong>Ethan Frome (1992)</strong> — Peacham stood in for the fictional Starkfield in this Edith Wharton adaptation</span></div>
+                  <div class="place-card-detail"><span>🎬</span><span><strong>The Spitfire Grill (1996)</strong> — Nearly the entire film was shot here; the fictional town of "Gilead" is Peacham</span></div>
+                  <div class="place-card-detail"><span>🎬</span><span><strong>Where the Rivers Flow North (1993)</strong> — Starring Rip Torn, set in 1927 Northeast Kingdom Vermont</span></div>
+                  <div class="place-card-detail"><span>🎬</span><span><strong>A Return to Salem's Lot (1987)</strong> — Peacham provided the eerie New England backdrop</span></div>
+                  <div class="place-card-detail"><span>📍</span><span>Peacham Corner, Peacham, VT 05862 · ~20 min west of the inn</span></div>
+                </div>
+                <div class="place-card-tip"><strong>Gloria &amp; Staff's tip:</strong> Walk the village green, visit the church, and stroll to the hilltop cemetery for a view that will stop you cold. In October, this may be the most beautiful half-mile walk in Vermont.</div>
+              </div>
+            </div>
+          </article>
+
         </div>
       </div>
     </section>
@@ -508,6 +596,31 @@
         </div>
 
         <div class="places-grid">
+
+          <!-- Fishing - FEATURED -->
+          <article class="place-card place-card-featured fade-up">
+            <div class="place-card-img">
+              <img src="images/fishing-vermont.jpg" alt="Fishing on the Connecticut River near McIndoe Falls, Vermont">
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;">
+              <div class="place-card-header">
+                <div class="place-card-title">
+                  <span class="place-card-icon">🎣</span>
+                  <h3>Fishing: Rivers &amp; Lakes</h3>
+                </div>
+                <span class="place-card-dist">Steps away</span>
+              </div>
+              <div class="place-card-body">
+                <p class="place-card-category">Fishing · Kayaking · Paddling</p>
+                <p>The Connecticut River, Passumpsic River, and Stevens River all flow through
+                Barnet — offering exceptional fishing for trout, bass, and other species.
+                Harvey's Lake and Sarah Moore Pond add still-water options. The rivers are
+                also excellent for kayaking and canoeing, with miles of scenic paddling
+                accessible right from the village.</p>
+                <div class="place-card-tip"><strong>Gloria &amp; Staff's tip:</strong> Vermont fishing licenses required — available at local sporting goods stores in St. Johnsbury and Wells River. Ask us about the best local spots — some of them aren't on any map.</div>
+              </div>
+            </div>
+          </article>
 
           <article class="place-card fade-up" id="kingdom-trails">
             <div class="place-card-header">
@@ -532,27 +645,6 @@
             </div>
           </article>
 
-          <article class="place-card fade-up fade-up-delay-1" id="skiing">
-            <div class="place-card-header">
-              <div class="place-card-title">
-                <span class="place-card-icon">⛷️</span>
-                <h3>Burke Mountain &amp; Jay Peak</h3>
-              </div>
-              <span class="place-card-dist">30–60 min</span>
-            </div>
-            <div class="place-card-body">
-              <p class="place-card-category">Skiing &amp; Winter Recreation</p>
-              <p>Two excellent ski areas are easily reachable from the inn. Burke Mountain
-              offers classic Vermont skiing — uncrowded, scenic, and authentic. Jay Peak,
-              further north, is known for its impressive natural snowfall and also has an
-              indoor water park for families. Both mountains are surrounded by the wild
-              beauty of the Northeast Kingdom.</p>
-              <div class="place-card-details">
-                <div class="place-card-detail"><span>📍</span><span>Burke Mountain: East Burke, VT (~30 min)</span></div>
-                <div class="place-card-detail"><span>📍</span><span>Jay Peak: Jay, VT (~60 min)</span></div>
-              </div>
-            </div>
-          </article>
 
           <article class="place-card fade-up">
             <div class="place-card-header">
@@ -598,24 +690,6 @@
             </div>
           </article>
 
-          <article class="place-card fade-up">
-            <div class="place-card-header">
-              <div class="place-card-title">
-                <span class="place-card-icon">🎣</span>
-                <h3>Fishing: Rivers &amp; Lakes</h3>
-              </div>
-              <span class="place-card-dist">Nearby</span>
-            </div>
-            <div class="place-card-body">
-              <p class="place-card-category">Fishing · Kayaking · Paddling</p>
-              <p>The Connecticut River, Passumpsic River, and Stevens River all flow through
-              Barnet — offering exceptional fishing for trout, bass, and other species.
-              Harvey's Lake and Sarah Moore Pond add still-water options. The rivers are
-              also excellent for kayaking and canoeing, with miles of scenic paddling
-              accessible from the village.</p>
-              <div class="place-card-tip"><strong>Gloria &amp; Staff's tip:</strong> Vermont fishing licenses required — available at local sporting goods stores in St. Johnsbury and Wells River.</div>
-            </div>
-          </article>
 
           <article class="place-card fade-up fade-up-delay-1">
             <div class="place-card-header">
@@ -916,6 +990,169 @@
               </p>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         DAY TRIPS
+    ══════════════════════════════════════ -->
+    <section id="nearby" class="guide-section section" style="background:var(--green-pale);">
+      <div class="container">
+        <div class="guide-section-label fade-up">
+          <span class="guide-section-emoji">🚗</span>
+          <h2>Day Trips Worth the Drive</h2>
+        </div>
+
+        <div class="places-grid">
+
+          <!-- Hill Farmstead Brewery - FEATURED -->
+          <article class="place-card place-card-featured fade-up">
+            <div class="place-card-img">
+              <img src="images/hill-farmstead.jpg" alt="Hill Farmstead Brewery in Greensboro, Vermont">
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;">
+              <div class="place-card-header">
+                <div class="place-card-title">
+                  <span class="place-card-icon">🍺</span>
+                  <h3>Hill Farmstead Brewery</h3>
+                </div>
+                <span class="place-card-dist">~35 min</span>
+              </div>
+              <div class="place-card-body">
+                <p class="place-card-category">Craft Brewery · Must-Visit · Greensboro, VT</p>
+                <p>Widely regarded as one of the greatest breweries in the entire world — and it's
+                right here in the Northeast Kingdom. Founded by Shaun Hill on his family's 220-year-old
+                farm in Greensboro, Hill Farmstead has been ranked the best brewery in the world by
+                RateBeer, and beer writers across the country call it a dynasty. Their beers are brewed
+                in tiny batches, available only at the brewery and a handful of Vermont accounts.
+                The drive through the Northeast Kingdom hills to get there is beautiful in any season.</p>
+                <p>Our personal favorite — and one of the most beloved — is <strong>Edward</strong>,
+                a luminous American Pale Ale named for Shaun's grandfather, brewed with American
+                barley and hops and water from Edward's own well. Aromatic, citrusy, and perfectly
+                crafted. It is as good as beer gets.</p>
+                <div class="place-card-details">
+                  <div class="place-card-detail"><span>📍</span><span>403 Hill Road, Greensboro, VT 05841</span></div>
+                  <div class="place-card-detail"><span>🕐</span><span>Wed–Fri 12–5 PM &nbsp;·&nbsp; Sat–Sun 11 AM–5 PM · Check website — hours vary seasonally</span></div>
+                  <div class="place-card-detail"><span>🌐</span><span><a href="https://hillfarmstead.com" target="_blank" rel="noopener" style="color:var(--green-mid);">hillfarmstead.com</a></span></div>
+                </div>
+                <div class="place-card-tip"><strong>Gloria &amp; Staff's tip:</strong> Go early — popular releases sell out fast. The taproom is small and the setting is pure Vermont. Check their website before you go for current hours and what's on tap.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Quechee Gorge -->
+          <article class="place-card fade-up">
+            <div class="place-card-header">
+              <div class="place-card-title">
+                <span class="place-card-icon">🏔️</span>
+                <h3>Quechee Gorge — Vermont's "Little Grand Canyon"</h3>
+              </div>
+              <span class="place-card-dist">~50 min</span>
+            </div>
+            <div class="place-card-body">
+              <p class="place-card-category">State Park · Hiking · Natural Wonder · Free</p>
+              <p>Vermont's deepest gorge — 165 feet straight down to the rushing Ottauquechee
+              River below — carved by the retreating glaciers of the last Ice Age 13,000 years
+              ago. Standing on the bridge above it stops you cold. The Quechee Gorge Trail is
+              an easy 1.3-mile walk through the woods along the rim and down to the river's
+              edge. A wonderful half-day trip, especially beautiful in fall foliage season.
+              The Quechee State Park visitor center, picnic areas, and the Vermont Institute
+              of Natural Science raptor center are all nearby.</p>
+              <div class="place-card-details">
+                <div class="place-card-detail"><span>📍</span><span>5800 Woodstock Road (US Route 4), Quechee, VT 05059</span></div>
+                <div class="place-card-detail"><span>🕐</span><span>Open year-round · Free to view from bridge · State Park day-use fee for trails</span></div>
+                <div class="place-card-detail"><span>🌐</span><span><a href="https://vtstateparks.com/quechee.html" target="_blank" rel="noopener" style="color:var(--green-mid);">vtstateparks.com/quechee</a></span></div>
+              </div>
+              <div class="place-card-tip"><strong>Gloria &amp; Staff's tip:</strong> Pair it with a stop at the Simon Pearce glass studio and restaurant in Quechee village — watching glassblowers work over a roaring furnace is unforgettable.</div>
+            </div>
+          </article>
+
+          <!-- Ben & Jerry's -->
+          <article class="place-card fade-up">
+            <div class="place-card-header">
+              <div class="place-card-title">
+                <span class="place-card-icon">🍦</span>
+                <h3>Ben &amp; Jerry's Factory Tour</h3>
+              </div>
+              <span class="place-card-dist">~60 min · Waterbury</span>
+            </div>
+            <div class="place-card-body">
+              <p class="place-card-category">Factory Tour · Ice Cream · All Ages</p>
+              <p>The only Ben &amp; Jerry's factory open to the public — and the one that started
+              it all. A 30-minute guided tour takes you to a glassed-in mezzanine overlooking the
+              production floor (350,000 pints a day), followed by a sample of whatever flavor
+              they're making that day. The legendary <strong>Flavor Graveyard</strong> up the
+              hill pays granite-headstone tribute to every discontinued flavor with witty
+              epitaphs. A must for families and anyone who has ever loved a pint of Cherry Garcia.</p>
+              <div class="place-card-details">
+                <div class="place-card-detail"><span>📍</span><span>1281 Waterbury-Stowe Road, Waterbury, VT 05676</span></div>
+                <div class="place-card-detail"><span>🕐</span><span>Daily 10 AM – 6 PM · Last tour 5 PM · Book tickets online in advance</span></div>
+                <div class="place-card-detail"><span>🌐</span><span><a href="https://www.benjerry.com/about-us/factory-tours" target="_blank" rel="noopener" style="color:var(--green-mid);">benjerry.com/factory-tours</a></span></div>
+              </div>
+              <div class="place-card-tip"><strong>Gloria &amp; Staff's tip:</strong> Book tickets online ahead of time — they sell out, especially on summer weekends. While you're in Waterbury, the Cold Hollow Cider Mill is right down the road.</div>
+            </div>
+          </article>
+
+          <!-- Trapp Family Lodge / Stowe -->
+          <article class="place-card fade-up fade-up-delay-1">
+            <div class="place-card-header">
+              <div class="place-card-title">
+                <span class="place-card-icon">🏔️</span>
+                <h3>Von Trapp Family Lodge &amp; Stowe</h3>
+              </div>
+              <span class="place-card-dist">~65 min · Stowe</span>
+            </div>
+            <div class="place-card-body">
+              <p class="place-card-category">Resort · Village · Skiing · Austrian Heritage</p>
+              <p>The real von Trapp family — yes, <em>that</em> von Trapp family from The Sound
+              of Music — built their lodge on 2,500 acres of hillside above Stowe in 1950, and
+              their descendants run it to this day. The Austrian-style architecture, mountain
+              views, cross-country ski trails, and on-site von Trapp Brewing make it one of the
+              most unique destinations in all of New England. The village of Stowe itself —
+              with its white church steeple, boutiques, and world-class restaurants — is
+              one of Vermont's most beloved towns. Mount Mansfield, Vermont's highest peak,
+              rises right behind it.</p>
+              <div class="place-card-details">
+                <div class="place-card-detail"><span>📍</span><span>700 Trapp Hill Road, Stowe, VT 05672</span></div>
+                <div class="place-card-detail"><span>🕐</span><span>Open year-round · History tours available · Restaurant and brewery on site</span></div>
+                <div class="place-card-detail"><span>🌐</span><span><a href="https://www.trappfamily.com" target="_blank" rel="noopener" style="color:var(--green-mid);">trappfamily.com</a></span></div>
+              </div>
+              <div class="place-card-tip"><strong>Gloria &amp; Staff's tip:</strong> Even if you don't stay or tour, drive up to the lodge for the mountain views and a beer at von Trapp Brewing. Then walk the village of Stowe on your way back.</div>
+            </div>
+          </article>
+
+          <!-- Jay Peak -->
+          <article class="place-card fade-up">
+            <div class="place-card-header">
+              <div class="place-card-title">
+                <span class="place-card-icon">⛷️</span>
+                <h3>Jay Peak Resort</h3>
+              </div>
+              <span class="place-card-dist">~60 min · Jay, VT</span>
+            </div>
+            <div class="place-card-body">
+              <p class="place-card-category">Skiing · Golf · Indoor Water Park · Four Seasons</p>
+              <p>Vermont's snowiest mountain and one of the most complete resorts in the Northeast.
+              Jay Peak sits just 8 miles from the Canadian border and receives more natural snowfall
+              than any other resort in the East — the terrain is wild, the runs are long, and the
+              crowds are thin compared to southern Vermont resorts. But Jay Peak is far more than
+              just a ski mountain. In summer and fall the resort comes alive with a championship
+              golf course winding through the hillside, and year-round, the extraordinary
+              <strong>Pump House Indoor Waterpark</strong> — Vermont's first and largest, a
+              50,000-square-foot facility with water slides, a FlowRider surf simulator, a lazy
+              river, and an AquaLoop — makes it a destination for the whole family in any season.</p>
+              <div class="place-card-details">
+                <div class="place-card-detail"><span>📍</span><span>830 Jay Peak Road, Jay, VT 05859</span></div>
+                <div class="place-card-detail"><span>⛷️</span><span>Skiing: late November through April (conditions dependent)</span></div>
+                <div class="place-card-detail"><span>⛳</span><span>Golf: seasonally spring through fall</span></div>
+                <div class="place-card-detail"><span>🏊</span><span>Pump House Waterpark: open year-round</span></div>
+                <div class="place-card-detail"><span>🌐</span><span><a href="https://jaypeakresort.com" target="_blank" rel="noopener" style="color:var(--green-mid);">jaypeakresort.com</a></span></div>
+              </div>
+              <div class="place-card-tip"><strong>Gloria &amp; Staff's tip:</strong> If you're visiting with kids, the Pump House alone is worth the drive in any season. For skiers, Jay's snowfall record and lack of crowds make it a special mountain — very different from the Stowe or Killington experience.</div>
+            </div>
+          </article>
+
         </div>
       </div>
     </section>
