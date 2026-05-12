@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | McIndoe Falls Inn — Vermont's Northeast Kingdom B&amp;B</title>
+  <meta name="description" content="Contact McIndoe Falls Inn in Barnet, Vermont. Ask Gloria and Staff about availability, special needs, pets, extended stays, or local area questions. Open May–November.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&family=Cormorant+Garamond:ital,wght@0,400;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* ── Contact-specific styles ── */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    /* Info column */
+    .contact-info-block {
+      margin-bottom: 40px;
+    }
+    .contact-info-block:last-child { margin-bottom: 0; }
+    .contact-info-block h4 {
+      font-size: 1rem;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .contact-info-block h4 span { font-size: 1.2rem; }
+    .contact-info-block p,
+    .contact-info-block a {
+      font-size: .925rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .contact-info-block a:hover { color: var(--green-mid); }
+    .contact-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border-light);
+      margin: 28px 0;
+    }
+
+    /* Form */
+    .contact-form-wrap {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 44px;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-md);
+    }
+    .contact-form-wrap h3 {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+    }
+    .contact-form-wrap .tagline {
+      font-size: 1rem;
+      margin-bottom: 32px;
+      display: block;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--text-dark);
+      margin-bottom: 7px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-family: var(--font-sans);
+      font-size: .925rem;
+      color: var(--text-body);
+      background: var(--cream);
+      transition: var(--transition);
+      appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--green-mid);
+      background: var(--white);
+      box-shadow: 0 0 0 3px rgba(61,107,41,.1);
+    }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .form-submit {
+      margin-top: 28px;
+    }
+    .form-submit .btn {
+      width: 100%;
+      font-size: .9rem;
+      padding: 16px;
+    }
+    .form-note {
+      margin-top: 14px;
+      font-size: .78rem;
+      color: var(--text-muted);
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    /* Gloria section */
+    .gloria-card {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 24px;
+      align-items: center;
+      background: var(--green-pale);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      border: 1px solid var(--border);
+      margin-bottom: 40px;
+    }
+    .gloria-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--white);
+      box-shadow: var(--shadow-sm);
+      flex-shrink: 0;
+      display: block;
+    }
+    .gloria-text h4 { font-size: 1.1rem; margin-bottom: 4px; }
+    .gloria-role {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      margin-bottom: 10px;
+    }
+    .gloria-text p {
+      font-size: .875rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* FAQ */
+    .faq-list { margin-top: 8px; }
+    .faq-item {
+      border-bottom: 1px solid var(--border-light);
+      overflow: hidden;
+    }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 18px 0;
+      font-family: var(--font-sans);
+      font-size: .925rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      transition: color .25s;
+    }
+    .faq-question:hover { color: var(--green-mid); }
+    .faq-icon {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: var(--green-pale);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .85rem;
+      flex-shrink: 0;
+      transition: var(--transition);
+    }
+    .faq-item.open .faq-icon {
+      background: var(--green-mid);
+      color: var(--white);
+      border-color: var(--green-mid);
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease, padding .35s ease;
+    }
+    .faq-answer p {
+      font-size: .875rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      padding-bottom: 18px;
+      margin: 0;
+    }
+    .faq-item.open .faq-answer { max-height: 300px; }
+
+    @media (max-width: 1024px) {
+      .contact-layout { grid-template-columns: 1fr; gap: 48px; }
+    }
+    @media (max-width: 640px) {
+      .contact-form-wrap { padding: 28px 20px; }
+      .form-row { grid-template-columns: 1fr; }
+      .gloria-card { grid-template-columns: 1fr; text-align: center; }
+      .gloria-avatar { margin: 0 auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header scrolled" role="banner">
+    <div class="header-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-text">McIndoe Falls Inn</span>
+        <span class="nav-logo-sub">Vermont's Northeast Kingdom</span>
+      </a>
+      <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav class="nav-menu" aria-label="Primary navigation">
+        <a href="index.html"          class="nav-link">Home</a>
+        <a href="our-inn.html"        class="nav-link">The Inn</a>
+        <a href="accommodations.html" class="nav-link">Rooms</a>
+        <a href="local-area.html"     class="nav-link">Local Area</a>
+        <a href="contact.html"        class="nav-link">Contact</a>
+        <a href="https://v2.reservationkey.com/87810/reserve/" target="_blank" rel="noopener"               class="nav-link nav-book">Book Your Stay</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="page-hero-content">
+        <p class="eyebrow">We'd Love to Hear from You</p>
+        <h1>Contact Us</h1>
+        <p class="tagline">No question too small — Gloria and Staff know the answer</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="breadcrumb-sep">›</span>
+          <span>Contact</span>
+        </nav>
+      </div>
+    </section>
+
+    <!-- MAIN CONTACT SECTION -->
+    <section class="section" style="background:var(--cream);">
+      <div class="container">
+        <div class="contact-layout">
+
+          <!-- LEFT: Info -->
+          <div>
+            <div class="gloria-card fade-up">
+              <img src="images/gloria.jpg" alt="Gloria Laborie, Innkeeper" class="gloria-avatar">
+              <div class="gloria-text">
+                <h4>Gloria Laborie</h4>
+                <p class="gloria-role">Innkeeper &amp; Owner</p>
+                <p>Gloria and her family have operated McIndoe Falls Inn for over 50 years.
+                Whether you have a question about availability, need a local recommendation,
+                or want to discuss a special stay — Gloria and Staff are here for you.</p>
+              </div>
+            </div>
+
+            <div class="contact-info-block fade-up">
+              <h4><span>📍</span> Address</h4>
+              <p>
+                McIndoe Falls Inn<br>
+                4586 US Route 5<br>
+                Barnet, Vermont 05050<br>
+                <a href="https://maps.google.com/?q=4586+US+Route+5+Barnet+Vermont" target="_blank" rel="noopener" style="color:var(--green-mid);font-size:.85rem;margin-top:6px;display:inline-block;">
+                  Open in Google Maps →
+                </a>
+              </p>
+            </div>
+
+            <div class="contact-divider"></div>
+
+            <div class="contact-info-block fade-up fade-up-delay-1">
+              <h4><span>📞</span> Phone</h4>
+              <p>
+                <!-- Replace with actual phone number -->
+                <a href="tel:+18026332240">802-633-2240</a><br>
+                <span style="font-size:.8rem;">Best reached mornings (8–10 AM) or evenings (5–8 PM) Vermont time.</span>
+              </p>
+            </div>
+
+            <div class="contact-divider"></div>
+
+            <div class="contact-info-block fade-up fade-up-delay-1">
+              <h4><span>✉️</span> Email</h4>
+              <p>
+                <!-- Replace with actual email -->
+                <a href="mailto:reservations@mcindoefallsinn.com">reservations@mcindoefallsinn.com</a><br>
+                <span style="font-size:.8rem;">We typically respond within 24 hours during the open season.</span>
+              </p>
+            </div>
+
+            <div class="contact-divider"></div>
+
+            <div class="contact-info-block fade-up fade-up-delay-2">
+              <h4><span>🌅</span> Season &amp; Hours</h4>
+              <p>
+                <strong style="color:var(--text-dark);">Open:</strong> May 1 – October 31<br>
+                <strong style="color:var(--text-dark);">Check-in:</strong> 3:00 PM – 7:00 PM<br>
+                <strong style="color:var(--text-dark);">Check-out:</strong> by 11:00 AM<br>
+                <span style="font-size:.8rem;">Late arrivals: please call ahead so we can arrange it.</span>
+              </p>
+            </div>
+
+            <div class="contact-divider"></div>
+
+            <div class="contact-info-block fade-up fade-up-delay-2">
+              <h4><span>🗺️</span> Getting Here</h4>
+              <p>
+                Take I-91 to <strong>Exit 18 (Barnet)</strong>.<br>
+                Head south on US Route 5 approximately 2.5 miles.<br>
+                The inn is at 4586 US Route 5 on your left.<br>
+                Free on-site parking available.
+              </p>
+            </div>
+
+            <div class="contact-divider"></div>
+
+            <div class="contact-info-block fade-up fade-up-delay-2">
+              <h4><span>📲</span> Follow Along</h4>
+              <p style="margin-bottom:14px;">Stay connected with McIndoe Falls Inn on social media for local updates, seasonal highlights, and Vermont inspiration.</p>
+              <div style="display:flex;gap:12px;">
+                <a href="https://www.facebook.com/McIndoeFallsInn/" target="_blank" rel="noopener"
+                   style="display:flex;align-items:center;gap:8px;background:var(--green-pale);border:1px solid var(--border);border-radius:var(--radius);padding:9px 18px;font-size:.8rem;font-weight:700;color:var(--green-deep);">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+                  Facebook
+                </a>
+                <a href="https://www.tripadvisor.com/Hotel_Review-g57316-d1466095-Reviews-McIndoe_Falls_Inn-McIndoe_Falls_Vermont.html" target="_blank" rel="noopener"
+                   style="display:flex;align-items:center;gap:8px;background:var(--green-pale);border:1px solid var(--border);border-radius:var(--radius);padding:9px 18px;font-size:.8rem;font-weight:700;color:var(--green-deep);">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                  TripAdvisor
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: Form -->
+          <div class="fade-up fade-up-delay-1">
+            <div class="contact-form-wrap">
+              <h3>Send Us a Message</h3>
+              <span class="tagline">We'll get back to you within one business day</span>
+
+              <!-- NOTE: This form needs a backend handler or a service like Formspree/Netlify Forms -->
+              <!-- Replace action="#" with your form endpoint -->
+              <form action="#" method="POST" novalidate aria-label="Contact form">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="first-name">First Name <span style="color:var(--burgundy);">*</span></label>
+                    <input type="text" id="first-name" name="first_name" autocomplete="given-name" required placeholder="Jane">
+                  </div>
+                  <div class="form-group">
+                    <label for="last-name">Last Name <span style="color:var(--burgundy);">*</span></label>
+                    <input type="text" id="last-name" name="last_name" autocomplete="family-name" required placeholder="Smith">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Email Address <span style="color:var(--burgundy);">*</span></label>
+                  <input type="email" id="email" name="email" autocomplete="email" required placeholder="jane@email.com">
+                </div>
+
+                <div class="form-group">
+                  <label for="phone">Phone Number</label>
+                  <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="(802) 555-0000">
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="arrival">Arrival Date</label>
+                    <input type="date" id="arrival" name="arrival_date">
+                  </div>
+                  <div class="form-group">
+                    <label for="departure">Departure Date</label>
+                    <input type="date" id="departure" name="departure_date">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="room-type">Preferred Room Type</label>
+                  <select id="room-type" name="room_type">
+                    <option value="">— Select a preference —</option>
+                    <option value="suite">Suite-Style Room (soaking/clawfoot tub)</option>
+                    <option value="classic-queen">Classic Inn Room — Queen Bed</option>
+                    <option value="classic-double">Classic Inn Room — Double Beds</option>
+                    <option value="apartment">Annex — Full Apartment</option>
+                    <option value="loft">Annex — Loft Apartment</option>
+                    <option value="flexible">Flexible / Not Sure Yet</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="guests">Number of Guests</label>
+                  <select id="guests" name="guests">
+                    <option value="1">1 Guest</option>
+                    <option value="2" selected>2 Guests</option>
+                    <option value="3">3 Guests</option>
+                    <option value="4">4 Guests</option>
+                    <option value="5+">5 or more</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="pets">Traveling with Pets?</label>
+                  <select id="pets" name="pets">
+                    <option value="no">No</option>
+                    <option value="yes">Yes — please tell me more</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="message">Your Message <span style="color:var(--burgundy);">*</span></label>
+                  <textarea id="message" name="message" required
+                    placeholder="Tell us about your visit, ask about availability, special needs, dietary requirements, local recommendations — anything at all."></textarea>
+                </div>
+
+                <div class="form-submit">
+                  <button type="submit" class="btn btn-primary">Send Your Message</button>
+                </div>
+                <p class="form-note">
+                  Fields marked <span style="color:var(--burgundy);">*</span> are required.
+                  Your information is never shared with third parties.
+                  For immediate assistance, call us at
+                  <a href="tel:+18026332240" style="color:var(--green-mid);">802-633-2240</a>.
+                </p>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" style="background:var(--white);">
+      <div class="container container--narrow">
+        <div class="section-header">
+          <p class="eyebrow fade-up">Quick Answers</p>
+          <h2 class="fade-up fade-up-delay-1">Frequently Asked Questions</h2>
+          <div class="divider fade-up"><div class="divider-leaf"></div></div>
+        </div>
+
+        <div class="faq-list fade-up">
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Do you accept pets?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer" role="region">
+              <p>Yes, we are pet-friendly! Please inquire when booking so we can arrange the right
+              accommodation for you and your furry companion. An additional pet fee may apply.
+              We have an enclosed outdoor dog park on site.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Where exactly are you located?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer" role="region">
+              <p>We are at 4586 US Route 5, Barnet, Vermont 05050 — in the historic village
+              of McIndoe Falls, along the Connecticut River. We are just 2.5 miles from
+              I-91 Exit 18 (Barnet). GPS works well; look for us on the left heading south
+              on US Route 5 from the highway exit.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              What are your check-in and check-out times?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer" role="region">
+              <p>Standard check-in is between 3:00 PM and 7:00 PM. Check-out is by 11:00 AM.
+              If you expect to arrive after 7:00 PM, please call ahead so we can make
+              arrangements. We are flexible and want your arrival to go smoothly.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Are extended stays or weekly rates available?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer" role="region">
+              <p>Yes — extended stay discounts are available, particularly for our annex
+              apartments which have full kitchens. Contact Gloria and Staff directly to discuss
+              weekly rates and multi-night arrangements that work for your schedule.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              What is your cancellation policy?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer" role="region">
+              <p>Cancellations 14+ days before arrival receive a full refund. Cancellations
+              7–14 days before arrival receive a 50% refund. Cancellations within 7 days are
+              non-refundable. If you have extenuating circumstances, contact Gloria and Staff —
+              they are human beings and will do their best to work with you.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Is there WiFi and parking?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer" role="region">
+              <p>Yes to both — free WiFi is available throughout the inn, and free on-site
+              parking is included. Note that cell service in the Northeast Kingdom can be
+              spotty (Verizon tends to work best north of Brattleboro), so WiFi is especially
+              handy during your stay.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              What is nearby? What should I do?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer" role="region">
+              <p>Ask Gloria and Staff! After 50+ years in the Northeast Kingdom, they know every
+              swimming hole, back road, farmers market, and local event worth knowing.
+              Or visit our <a href="local-area.html" style="color:var(--green-mid);">Local Area page</a> for
+              a full guide to the region — foliage drives, hiking, Harvey's Lake,
+              Karmê Chöling, skiing, and much more.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- MAP -->
+    <section class="section--sm" style="background:var(--cream-dark);">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow fade-up">Find Us</p>
+          <h2 class="fade-up fade-up-delay-1">4586 US Route 5, Barnet, VT</h2>
+        </div>
+        <div class="fade-up" style="border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-md);">
+          <iframe
+            src="https://maps.google.com/maps?q=4586+US+Route+5,+Barnet,+Vermont+05050&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            width="100%" height="420"
+            style="border:0;display:block;"
+            allowfullscreen loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="McIndoe Falls Inn location — 4586 US Route 5, Barnet, Vermont">
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOOKING CTA -->
+    <section id="book" class="cta-banner">
+      <div class="cta-banner-overlay"></div>
+      <div class="container">
+        <div class="cta-banner-content">
+          <div class="cta-season fade-up">
+            <span>📅</span> Open May 1 – October 31
+          </div>
+          <h2 class="fade-up fade-up-delay-1">Ready to Book Your Vermont Stay?</h2>
+          <p class="tagline fade-up fade-up-delay-2">
+            7 rooms &amp; apartments &nbsp;·&nbsp; Common room &amp; fireplace &nbsp;·&nbsp; Free WiFi &amp; parking &nbsp;·&nbsp; Pet friendly
+          </p>
+          <div class="cta-buttons fade-up fade-up-delay-2">
+            <!-- Replace href with your actual booking platform URL -->
+            <a href="https://v2.reservationkey.com/87810/reserve/" target="_blank" rel="noopener" class="btn btn-gold btn-lg">Book Online Now</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>McIndoe Falls Inn</h3>
+          <p class="footer-brand-sub">Vermont's Northeast Kingdom</p>
+          <p>A 216-year-old Greek Revival bed &amp; breakfast in Barnet, Vermont. Family-owned for over 50 years.</p>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>4586 US Route 5, Barnet, Vermont 05050</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.67 19.79 19.79 0 01.22 1.07a2 2 0 012-2.17H5.5a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2.03z"/></svg>
+            <a href="tel:+18026332240">802-633-2240</a>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:reservations@mcindoefallsinn.com">reservations@mcindoefallsinn.com</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="our-inn.html">The Inn</a></li>
+            <li><a href="accommodations.html">Rooms &amp; Apartments</a></li>
+            <li><a href="local-area.html">Local Area</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Book Direct</h4>
+          <ul class="footer-links">
+            <li><a href="https://v2.reservationkey.com/87810/reserve/" target="_blank" rel="noopener">Book Online</a></li>
+            <li><a href="tel:+18026332240">Call 802-633-2240</a></li>
+            <li><a href="mailto:reservations@mcindoefallsinn.com">Email Us</a></li>
+          </ul>
+          <div class="footer-season-block" style="margin-top:20px;">
+            <div class="season-label">Open</div>
+            <strong>May 1 – October 31</strong>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Follow Along</h4>
+          <div class="social-links" style="margin-top:12px;">
+            <a href="https://www.facebook.com/McIndoeFallsInn/" class="social-link" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            </a>
+            <a href="https://www.tripadvisor.com/Hotel_Review-g57316-d1466095-Reviews-McIndoe_Falls_Inn-McIndoe_Falls_Vermont.html" class="social-link" target="_blank" rel="noopener" aria-label="TripAdvisor">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2025 McIndoe Falls Inn &nbsp;·&nbsp; Barnet, Vermont &nbsp;·&nbsp; All rights reserved</span>
+        <span>Built with care for Vermont's Northeast Kingdom</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // ── FAQ Accordion ──────────────────────────────────────
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        // close all
+        document.querySelectorAll('.faq-item').forEach(i => {
+          i.classList.remove('open');
+          i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+        // open clicked (unless it was already open)
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

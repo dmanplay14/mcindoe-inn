@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local Area &amp; Activities | McIndoe Falls Inn — Vermont's Northeast Kingdom</title>
+  <meta name="description" content="Gloria and Staff's guide to Vermont's Northeast Kingdom — Ben's Mill, Harvey's Lake, Karmê Chöling, Kingdom Trails, P&H Truck Stop, Fairbanks Museum, foliage drives, and more.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&family=Cormorant+Garamond:ital,wght@0,400;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* ── Local Area-specific styles ── */
+
+    /* Category tabs */
+    .guide-tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+      justify-content: center;
+    }
+    .guide-tab {
+      padding: 9px 22px;
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      font-family: var(--font-sans);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .guide-tab:hover,
+    .guide-tab.active {
+      background: var(--green-mid);
+      border-color: var(--green-mid);
+      color: var(--white);
+    }
+
+    /* Section labels */
+    .guide-section {
+      scroll-margin-top: 90px;
+    }
+    .guide-section-label {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--border);
+    }
+    .guide-section-label h2 {
+      font-size: 1.65rem;
+      margin: 0;
+    }
+    .guide-section-emoji { font-size: 1.8rem; }
+
+    /* Place cards */
+    .places-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-bottom: 64px;
+    }
+    .place-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-light);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition);
+    }
+    .place-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-4px);
+    }
+    .place-card-header {
+      padding: 20px 20px 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .place-card-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .place-card-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .place-card-header h3 { font-size: 1.05rem; margin: 0; line-height: 1.3; }
+    .place-card-dist {
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      background: var(--green-pale);
+      padding: 4px 10px;
+      border-radius: 12px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .place-card-body {
+      padding: 12px 20px 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .place-card-category {
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--green-sage);
+      margin-bottom: 8px;
+    }
+    .place-card-body p {
+      font-size: .875rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 12px;
+      flex: 1;
+    }
+    .place-card-details {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-light);
+    }
+    .place-card-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 7px;
+      font-size: .78rem;
+      color: var(--text-muted);
+    }
+    .place-card-detail span:first-child { flex-shrink: 0; }
+    .place-card-tip {
+      margin-top: 10px;
+      padding: 10px 12px;
+      background: var(--gold-pale);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-size: .78rem;
+      color: var(--text-body);
+      line-height: 1.5;
+    }
+    .place-card-tip strong { color: var(--text-dark); }
+
+    /* Full-width feature place card */
+    .place-card-featured {
+      grid-column: span 2;
+      flex-direction: row;
+    }
+    .place-card-featured .place-card-img {
+      width: 280px;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .place-card-featured .place-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .place-card-featured .place-card-header { padding-top: 24px; }
+    .place-card-featured .place-card-body   { padding-bottom: 24px; }
+
+    /* Dining table */
+    .dining-list-section {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 64px;
+    }
+    .dining-mini-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+    .dining-mini-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+    .dining-mini-card h4 { font-size: .975rem; margin-bottom: 5px; }
+    .dining-mini-card .cuisine { font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--green-sage); margin-bottom: 10px; }
+    .dining-mini-card p { font-size: .83rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 10px; }
+    .dining-mini-card .location-tag { font-size: .72rem; color: var(--text-muted); display: flex; align-items: center; gap: 5px; }
+
+    /* Staff picks banner */
+    .staff-picks-banner {
+      background: var(--green-deep);
+      border-radius: var(--radius-lg);
+      padding: 32px 40px;
+      margin-bottom: 64px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .staff-picks-icon { font-size: 2.5rem; flex-shrink: 0; }
+    .staff-picks-text h3 { color: var(--white); font-size: 1.2rem; margin-bottom: 8px; }
+    .staff-picks-text p { color: rgba(255,255,255,.75); font-size: .875rem; line-height: 1.6; margin: 0; }
+
+    /* Seasons strip */
+    .seasons-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 64px;
+    }
+    .season-strip-item {
+      padding: 28px 20px;
+      text-align: center;
+    }
+    .season-strip-item:nth-child(1) { background: #EDF7E5; }
+    .season-strip-item:nth-child(2) { background: #D4EDD0; }
+    .season-strip-item:nth-child(3) { background: #F2E9D0; }
+    .season-strip-item:nth-child(4) { background: #D8E8F2; }
+    .season-strip-item .s-icon { font-size: 2rem; margin-bottom: 10px; }
+    .season-strip-item h4 { font-size: .9rem; margin-bottom: 8px; }
+    .season-strip-item ul { list-style: none; padding: 0; }
+    .season-strip-item li { font-size: .78rem; color: var(--text-muted); padding: 3px 0; }
+
+    @media (max-width: 1024px) {
+      .dining-list-section { grid-template-columns: 1fr 1fr; }
+      .place-card-featured { grid-column: span 2; }
+    }
+    @media (max-width: 768px) {
+      .places-grid { grid-template-columns: 1fr; }
+      .place-card-featured {
+        grid-column: span 1;
+        flex-direction: column;
+      }
+      .place-card-featured .place-card-img {
+        width: 100%;
+        height: 100px;
+        border-radius: 0;
+      }
+      .dining-list-section { grid-template-columns: 1fr; }
+      .seasons-strip { grid-template-columns: 1fr 1fr; }
+      .staff-picks-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 24px 20px;
+      }
+      .guide-tabs { gap: 8px; }
+      /* Map placeholder: taller on mobile */
+      .map-placeholder { aspect-ratio: 4/3 !important; }
+    }
+    @media (max-width: 480px) {
+      .seasons-strip { grid-template-columns: 1fr; }
+      .guide-tab {
+        padding: 8px 14px;
+        font-size: .72rem;
+      }
+      .staff-picks-banner { padding: 20px 16px; }
+      .place-card-header { flex-wrap: wrap; }
+      .place-card-dist { margin-top: 4px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header scrolled" role="banner">
+    <div class="header-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-text">McIndoe Falls Inn</span>
+        <span class="nav-logo-sub">Vermont's Northeast Kingdom</span>
+      </a>
+      <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav class="nav-menu" aria-label="Primary navigation">
+        <a href="index.html"          class="nav-link">Home</a>
+        <a href="our-inn.html"        class="nav-link">The Inn</a>
+        <a href="accommodations.html" class="nav-link">Rooms</a>
+        <a href="local-area.html"     class="nav-link">Local Area</a>
+        <a href="contact.html"        class="nav-link">Contact</a>
+        <a href="https://v2.reservationkey.com/87810/reserve/" target="_blank" rel="noopener"               class="nav-link nav-book">Book Your Stay</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="page-hero-content">
+        <p class="eyebrow">Gloria &amp; Staff's Local Guide</p>
+        <h1>Explore the Northeast Kingdom</h1>
+        <p class="tagline">A National Geographic–designated sustainable geotourism destination, right outside your door</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="breadcrumb-sep">›</span>
+          <span>Local Area</span>
+        </nav>
+      </div>
+    </section>
+
+    <!-- INTRO + QUICK NAV -->
+    <section class="section--sm" style="background:var(--cream);">
+      <div class="container">
+        <div class="staff-picks-banner fade-up">
+          <div class="staff-picks-icon">🗺️</div>
+          <div class="staff-picks-text">
+            <h3>Gloria &amp; Staff's Personal Recommendations</h3>
+            <p>After 50+ years in Vermont's Northeast Kingdom, Gloria and Staff know every back road,
+            swimming hole, hidden trail, and local gem worth visiting. This guide represents the
+            places they genuinely love and recommend to guests. When in doubt — just ask at the inn.</p>
+          </div>
+        </div>
+
+        <!-- Quick navigation tabs -->
+        <div class="guide-tabs fade-up" role="navigation" aria-label="Guide sections">
+          <a href="#right-here" class="guide-tab">Right Here in Barnet</a>
+          <a href="#nature"     class="guide-tab">Nature &amp; Outdoors</a>
+          <a href="#culture"    class="guide-tab">History &amp; Culture</a>
+          <a href="#dining"     class="guide-tab">Dining &amp; Local Food</a>
+          <a href="#st-j"       class="guide-tab">St. Johnsbury</a>
+          <a href="#nearby"     class="guide-tab">Day Trips</a>
+          <a href="#getting-here" class="guide-tab">Getting Here</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         RIGHT HERE: BARNET & McINDOE FALLS
+    ══════════════════════════════════════ -->
+    <section id="right-here" class="guide-section section" style="background:var(--white);">
+      <div class="container">
+        <div class="guide-section-label fade-up">
+          <span class="guide-section-emoji">📍</span>
+          <h2>Right Here: Barnet &amp; McIndoe Falls</h2>
+        </div>
+
+        <div class="places-grid">
+
+          <!-- Ben's Mill - FEATURED -->
+          <article class="place-card place-card-featured fade-up" id="bens-mill">
+            <div class="place-card-img">
+              <img src="images/bens-mill.jpg" alt="Ben's Mill historic water-powered mill in Barnet, Vermont">
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;">
+              <div class="place-card-header">
+                <div class="place-card-title">
+                  <span class="place-card-icon">🏭</span>
+                  <h3>Ben's Mill — Vermont's Last Water-Powered Mill</h3>
+                </div>
+                <span class="place-card-dist">~10 min</span>
+              </div>
+              <div class="place-card-body">
+                <p class="place-card-category">Living History Museum · Must-See</p>
+                <p>One of the most remarkable places in all of Vermont. Ben's Mill is the only surviving,
+                intact water-powered woodworking and blacksmith shop with its original working equipment
+                in Vermont — and possibly the entire United States. First developed in 1836 on the
+                Stevens River, the current mill dates to 1872. Ben Thresher operated the cider press
+                into the 1960s and provided milling and smithing services to the community into the
+                1990s. Today it runs as a living history museum with demonstrations, blacksmithing events,
+                and the legendary annual Ducky Day race down the river.</p>
+                <div class="place-card-details">
+                  <div class="place-card-detail"><span>📍</span><span>2236 West Barnet Road, Barnet, VT 05821</span></div>
+                  <div class="place-card-detail"><span>🕐</span><span>Weekends 11 AM – 3 PM, late May through early October</span></div>
+                  <div class="place-card-detail"><span>📞</span><span>(802) 397-1736 &nbsp;·&nbsp; bensmill1872@gmail.com</span></div>
+                  <div class="place-card-detail"><span>🌐</span><span><a href="https://www.bensmill.com" target="_blank" rel="noopener" style="color:var(--green-mid);">www.bensmill.com</a></span></div>
+                </div>
+                <div class="place-card-tip"><strong>Gloria &amp; Staff's tip:</strong> Don't miss the blacksmith demonstrations — they're unlike anything you'll see anywhere else. Check their website for special events including the Ducky Day river race.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Harvey's Lake -->
+          <article class="place-card fade-up" id="lakes">
+            <div class="place-card-header">
+              <div class="place-card-title">
+                <span class="place-card-icon">🏊</span>
+                <h3>Harvey's Lake Public Beach</h3>
+              </div>
+              <span class="place-card-dist">~15 min</span>
+            </div>
+            <div class="place-card-body">
+              <p class="place-card-category">Swimming &amp; Recreation</p>
+              <p>A 7,000-acre natural gem named after Colonel Alexander Harvey, the Scottish settler
+              who helped found Barnet. The public beach has a sandy shoreline with a shallow sandy
+              bottom — excellent for children and swimmers of all levels. Picnic tables, a small
+              playground, a beach house, and a pavilion make it a perfect summer half-day. And yes —
+              Jacques Cousteau apparently first experimented with underwater breathing here as a
+              boy at summer camp in the early 1920s.</p>
+              <div class="place-card-details">
+                <div class="place-card-detail"><span>📍</span><span>95 Harvey Mountain Road, Barnet, VT 05821</span></div>
+                <div class="place-card-detail"><span>🌐</span><span><a href="http://www.harveyslakebeach.net" target="_blank" rel="noopener" style="color:var(--green-mid);">www.harveyslakebeach.net</a></span></div>
+              </div>
+              <div class="place-card-tip"><strong>Gloria &amp; Staff's tip:</strong> Go on a weekday morning for the best experience — it gets busy on summer weekends. The lake is beautiful for kayaking too.</div>
+            </div>
+          </article>
+
+          <!-- Karmê Chöling -->
+          <article class="place-card fade-up fade-up-delay-1" id="karme">
+            <div class="place-card-header">
+              <div class="place-card-title">
+                <span class="place-card-icon">🧘</span>
+                <h3>Karmê Chöling Meditation Center</h3>
+              </div>
+              <span class="place-card-dist">~5 min</span>
+            </div>
+            <div class="place-card-body">
+              <p class="place-card-category">Mindfulness &amp; Retreat</p>
+              <p>One of the world's foremost Buddhist meditation centers, located just minutes
+              from the inn. Founded in 1970 by Tibetan meditation master Chögyam Trungpa Rinpoche,
+              Karmê Chöling offers year-round programs and retreats open to the public — from
+              weekend introductions to extended residential study. The grounds and shrine rooms
+              are breathtaking. Even a peaceful walk on the property is worth the short drive.</p>
+              <div class="place-card-details">
+                <div class="place-card-detail"><span>📍</span><span>369 Patneaude Lane, Barnet, VT 05821</span></div>
+                <div class="place-card-detail"><span>🌐</span><span><a href="https://www.karmecholing.org" target="_blank" rel="noopener" style="color:var(--green-mid);">www.karmecholing.org</a></span></div>
+              </div>
+              <div class="place-card-tip"><strong>Gloria &amp; Staff's tip:</strong> Many guests come to the inn specifically to attend retreats at Karmê Chöling. Check their program calendar well in advance — popular retreats fill up.</div>
+            </div>
+          </article>
+
+          <!-- Milarepa Center -->
+          <article class="place-card fade-up fade-up-delay-1">
+            <div class="place-card-header">
+              <div class="place-card-title">
+                <span class="place-card-icon">☸️</span>
+                <h3>Milarepa Center</h3>
+              </div>
+              <span class="place-card-dist">~10 min</span>
+            </div>
+            <div class="place-card-body">
+              <p class="place-card-category">Tibetan Buddhist Retreat</p>
+              <p>A Tibetan Buddhist meditation retreat center set on beautiful Barnet hillside
+              land. Milarepa offers classes and live-in retreats for anyone, regardless of
+              background or experience. The center's peaceful, contemplative setting makes it
+              a destination in itself — even for those who come simply to walk the grounds and
+              enjoy the stillness of the Vermont countryside.</p>
+              <div class="place-card-details">
+                <div class="place-card-detail"><span>🌐</span><span><a href="https://milarepacenter.org" target="_blank" rel="noopener" style="color:var(--green-mid);">milarepacenter.org</a></span></div>
+              </div>
+              <div class="place-card-tip"><strong>Gloria &amp; Staff's tip:</strong> Both Karmê Chöling and Milarepa Center are within the same small area — a remarkable concentration of contemplative practice in one Vermont valley.</div>
+            </div>
+          </article>
+
+          <!-- McIndoe Falls Dam / River -->
+          <article class="place-card fade-up">
+            <div class="place-card-header">
+              <div class="place-card-title">
+                <span class="place-card-icon">💧</span>
+                <h3>McIndoes Reservoir &amp; Connecticut River</h3>
+              </div>
+              <span class="place-card-dist">Steps away</span>
+            </div>
+            <div class="place-card-body">
+              <p class="place-card-category">Swimming · Fishing · Kayaking</p>
+              <p>The McIndoe Falls dam on the Connecticut River creates the McIndoes Reservoir
+              right in the village — a beautiful stretch of water for swimming, canoeing,
+              kayaking, and fishing. The Connecticut River forms Vermont's border with
+              New Hampshire here, and the river views are stunning in every season. Locals
+              know the best access points — just ask Gloria and Staff.</p>
+              <div class="place-card-details">
+                <div class="place-card-detail"><span>📍</span><span>In McIndoe Falls village, along US Route 5</span></div>
+              </div>
+              <div class="place-card-tip"><strong>Gloria &amp; Staff's tip:</strong> Ask us about the best local swimming spots and fishing holes — some of them aren't on any map.</div>
+            </div>
+          </article>
+
+          <!-- McIndoes Academy -->
+          <article class="place-card fade-up fade-up-delay-1" id="history-mcindoe">
+            <div class="place-card-header">
+              <div class="place-card-title">
+                <span class="place-card-icon">🏛️</span>
+                <h3>McIndoes Academy</h3>
+              </div>
+              <span class="place-card-dist">In the village</span>
+            </div>
+            <div class="place-card-body">
+              <p class="place-card-category">Historic Landmark · National Register</p>
+              <p>Opened in 1853 and operating as a community school until 1969, McIndoes Academy
+              is listed on the National Register of Historic Places. The building stands as a
+              reminder of an era when this small village supported a major educational institution
+              — a testament to the ambition and community spirit of 19th-century McIndoe Falls
+              at the height of its lumber industry prosperity.</p>
+              <div class="place-card-details">
+                <div class="place-card-detail"><span>📍</span><span>McIndoe Falls village, Barnet, VT</span></div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         NATURE & OUTDOORS
+    ══════════════════════════════════════ -->
+    <section id="nature" class="guide-section section" style="background:var(--green-pale);">
+      <div class="container">
+        <div class="guide-section-label fade-up">
+          <span class="guide-section-emoji">🌲</span>
+          <h2>Nature &amp; Outdoors</h2>
+        </div>
+
+        <div class="places-grid">
+
+          <article class="place-card fade-up" id="kingdom-trails">
+            <div class="place-card-header">
+              <div class="place-card-title">
+                <span class="place-card-icon">🚴</span>
+                <h3>Kingdom Trails — Burke</h3>
+              </div>
+              <span class="place-card-dist">~30 min</span>
+            </div>
+            <div class="place-card-body">
+              <p class="place-card-category">Mountain Biking &amp; Hiking · 100+ Miles</p>
+              <p>One of the premier trail networks in the entire Northeast. Kingdom Trails
+              maintains over 100 miles of world-class mountain biking and hiking trails through
+              the hills surrounding East Burke. Consistently ranked among the best trail systems
+              in North America, the network weaves through private farmland, forests, and
+              hilltops with views that will stop you cold. Trail passes available seasonally.</p>
+              <div class="place-card-details">
+                <div class="place-card-detail"><span>📍</span><span>East Burke, VT (near Burke Mountain)</span></div>
+                <div class="place-card-detail"><span>🌐</span><span><a href="https://www.kingdomtrails.org" target="_blank" rel="noopener" style="color:var(--green-mid);">www.kingdomtrails.org</a></span></div>
+              </div>
+              <div class="place-card-tip"><strong>Gloria &amp; Staff's tip:</strong> This is world-class biking — bring your own bike or rent in Burke village. Fall is spectacular on these trails.</div>
+            </div>
+          </article>
+
+          <article class="place-card fade-up fade-up-delay-1" id="skiing">
+            <div class="place-card-header">
+              <div class="place-card-title">
+                <span class="place-card-icon">⛷️</span>
+                <h3>Burke Mountain &amp; Jay Peak</h3>
+              </div>
+              <span class="place-card-dist">30–60 min</span>
+            </div>
+            <div class="place-card-body">
+              <p class="place-card-category">Skiing &amp; Winter Recreation</p>
+              <p>Two excellent ski areas are easily reachable from the inn. Burke Mountain
+              offers classic Vermont skiing — uncrowded, scenic, and authentic. Jay Peak,
+              further north, is known for its impressive natural snowfall and also has an
+              indoor water park for families. Both mountains are surrounded by the wild
+              beauty of the Northeast Kingdom.</p>
+              <div class="place-card-details">
+                <div class="place-card-detail"><span>📍</span><span>Burke Mountain: East Burke, VT (~30 min)</span></div>
+                <div class="place-card-detail"><span>📍</span><span>Jay Peak: Jay, VT (~60 min)</span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="place-card fade-up">
+            <div class="place-card-header">
+              <div class="place-card-title">
+                <span class="place-card-icon">🥾</span>
+                <h3>Roy Mountain &amp; Local Hiking</h3>
+              </div>
+              <span class="place-card-dist">~15 min</span>
+            </div>
+            <div class="place-card-body">
+              <p class="place-card-category">Hiking &amp; Wildlife</p>
+              <p>Roy Mountain (2,103 ft) rises above Barnet and offers sweeping views across
+              the Northeast Kingdom — a rewarding hike at any time of year. Roy Mountain
+              Wildlife Management Area provides excellent birdwatching and wildlife viewing.
+              Garland Hill (Bogie Mountain) and Barnet Center back roads offer quieter
+              walks through Vermont's hill farms and forest edges.</p>
+              <div class="place-card-details">
+                <div class="place-card-detail"><span>📍</span><span>Barnet, VT — ask Gloria and Staff for trailhead directions</span></div>
+              </div>
+              <div class="place-card-tip"><strong>Gloria &amp; Staff's tip:</strong> The hill farm roads around Barnet Center are wonderful for walking — quiet, scenic, and far from the tourist trail.</div>
+            </div>
+          </article>
+
+          <article class="place-card fade-up fade-up-delay-1">
+            <div class="place-card-header">
+              <div class="place-card-title">
+                <span class="place-card-icon">🍁</span>
+                <h3>Fall Foliage Drives</h3>
+              </div>
+              <span class="place-card-dist">All around you</span>
+            </div>
+            <div class="place-card-body">
+              <p class="place-card-category">Scenic Drives · September–October</p>
+              <p>Vermont's Northeast Kingdom is widely regarded as one of the finest fall
+              foliage destinations in the world. The back roads through Barnet, Peacham,
+              Cabot, Groton, and East Burke ignite with color in late September and
+              early October. Route 2 east, the Peacham Road, and the East Burke loop are
+              among Gloria and Staff's personal favorites for a perfect foliage day.</p>
+              <div class="place-card-details">
+                <div class="place-card-detail"><span>🕐</span><span>Peak color typically late September – mid October</span></div>
+              </div>
+              <div class="place-card-tip"><strong>Gloria &amp; Staff's tip:</strong> Ask us for our current foliage route — it changes a little each year. We track the color daily during peak season.</div>
+            </div>
+          </article>
+
+          <article class="place-card fade-up">
+            <div class="place-card-header">
+              <div class="place-card-title">
+                <span class="place-card-icon">🎣</span>
+                <h3>Fishing: Rivers &amp; Lakes</h3>
+              </div>
+              <span class="place-card-dist">Nearby</span>
+            </div>
+            <div class="place-card-body">
+              <p class="place-card-category">Fishing · Kayaking · Paddling</p>
+              <p>The Connecticut River, Passumpsic River, and Stevens River all flow through
+              Barnet — offering exceptional fishing for trout, bass, and other species.
+              Harvey's Lake and Sarah Moore Pond add still-water options. The rivers are
+              also excellent for kayaking and canoeing, with miles of scenic paddling
+              accessible from the village.</p>
+              <div class="place-card-tip"><strong>Gloria &amp; Staff's tip:</strong> Vermont fishing licenses required — available at local sporting goods stores in St. Johnsbury and Wells River.</div>
+            </div>
+          </article>
+
+          <article class="place-card fade-up fade-up-delay-1">
+            <div class="place-card-header">
+              <div class="place-card-title">
+                <span class="place-card-icon">🐕</span>
+                <h3>Dog Mountain &amp; the Dog Chapel</h3>
+              </div>
+              <span class="place-card-dist">~15 min · St. Johnsbury</span>
+            </div>
+            <div class="place-card-body">
+              <p class="place-card-category">Art Gallery · Hiking · Dogs Welcome · Free Admission</p>
+              <p>One of the most unexpectedly moving places in Vermont — and one of the most
+              unique in the entire country. Dog Mountain is a 150-acre hilltop property in
+              St. Johnsbury, created by folk artist Stephen Huneck as a celebration of the
+              bond between people and their dogs. The centerpiece is the <strong>Dog Chapel</strong> —
+              a beautifully crafted small Vermont church whose interior walls are covered
+              floor to ceiling with handwritten notes, photos, and drawings left by visitors
+              in memory of beloved dogs they've lost. People come and weep. People come and
+              laugh. Everyone leaves moved.</p>
+              <p>The grounds are open dawn to dusk, free of charge, to people and their dogs.
+              There are hiking trails with sweeping Northeast Kingdom views, open fields,
+              ponds and streams, a dog agility course, a fenced play area, and the
+              Stephen Huneck Gallery featuring his distinctive woodcut prints and folk
+              art sculptures.</p>
+              <div class="place-card-details">
+                <div class="place-card-detail"><span>📍</span><span>143 Parks Road, St. Johnsbury, VT 05819</span></div>
+                <div class="place-card-detail"><span>🕐</span><span>Grounds open dawn to dusk, 7 days · Gallery hours vary — check website</span></div>
+                <div class="place-card-detail"><span>💰</span><span>Free admission — dogs welcome on leash</span></div>
+                <div class="place-card-detail"><span>🌐</span><span><a href="https://www.dogmt.com" target="_blank" rel="noopener" style="color:var(--green-mid);">www.dogmt.com</a></span></div>
+              </div>
+              <div class="place-card-tip"><strong>Gloria &amp; Staff's tip:</strong> Bring your dog and a box of tissues. The Dog Chapel is unlike anything you've ever experienced — a truly one-of-a-kind place that stays with you long after you leave Vermont.</div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         HISTORY & CULTURE
+    ══════════════════════════════════════ -->
+    <section id="culture" class="guide-section section" style="background:var(--cream);">
+      <div class="container">
+        <div class="guide-section-label fade-up">
+          <span class="guide-section-emoji">🏛️</span>
+          <h2>History, Heritage &amp; Culture</h2>
+        </div>
+
+        <div class="places-grid">
+
+          <article class="place-card place-card-featured fade-up" id="history">
+            <div class="place-card-img">
+              <img src="images/scottish-tartan.jpg" alt="Scottish tartan crest representing Barnet's Scottish heritage">
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;">
+              <div class="place-card-header">
+                <div class="place-card-title">
+                  <span class="place-card-icon">🏴󠁧󠁢󠁳󠁣󠁴󠁿</span>
+                  <h3>Scottish Heritage of Barnet</h3>
+                </div>
+                <span class="place-card-dist">All around you</span>
+              </div>
+              <div class="place-card-body">
+                <p class="place-card-category">Heritage &amp; History · Self-Guided</p>
+                <p>Barnet was settled in the 1770s predominantly by Scottish immigrants who found
+                Vermont's rolling green hills and clean rivers reminiscent of home. The McIndoe family
+                gave their name to the falls and village. In the cemetery above West Barnet lies the
+                grave of a soldier who survived the 1746 Battle of Culloden — the clash that crushed
+                the Scottish Highland uprising. He crossed an ocean and made his life here.
+                Presbyterian churches in Barnet Center and West Barnet still reflect this living
+                heritage. The Barnet Center Historic District is a beautiful, quiet walk through
+                250 years of American history with Scottish roots.</p>
+                <div class="place-card-tip"><strong>Gloria &amp; Staff's tip:</strong> Ask us for directions to the West Barnet cemetery and the Barnet Center back roads. It's a moving, beautiful self-guided walk through history.</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="place-card fade-up">
+            <div class="place-card-header">
+              <div class="place-card-title">
+                <span class="place-card-icon">🔭</span>
+                <h3>Fairbanks Museum &amp; Planetarium</h3>
+              </div>
+              <span class="place-card-dist">~15 min · St. Johnsbury</span>
+            </div>
+            <div class="place-card-body">
+              <p class="place-card-category">Natural History Museum</p>
+              <p>An eclectic, wonderful Victorian-era natural history museum in St. Johnsbury
+              — home to taxidermy animals, historical artifacts, meteorological displays, and
+              Vermont's only public planetarium. Daily planetarium shows explore the night
+              sky. The building itself, opened in 1891, is a jaw-dropping piece of Victorian
+              architecture.</p>
+              <div class="place-card-details">
+                <div class="place-card-detail"><span>📍</span><span>1302 Main Street, St. Johnsbury, VT</span></div>
+                <div class="place-card-detail"><span>🌐</span><span><a href="https://www.fairbanksmuseum.org" target="_blank" rel="noopener" style="color:var(--green-mid);">www.fairbanksmuseum.org</a></span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="place-card fade-up fade-up-delay-1">
+            <div class="place-card-header">
+              <div class="place-card-title">
+                <span class="place-card-icon">📚</span>
+                <h3>St. Johnsbury Athenaeum</h3>
+              </div>
+              <span class="place-card-dist">~15 min · St. Johnsbury</span>
+            </div>
+            <div class="place-card-body">
+              <p class="place-card-category">National Historic Landmark · Art Gallery &amp; Library</p>
+              <p>One of only 15 libraries in the United States declared a National Historic Landmark.
+              Built in 1871, the Athenaeum houses an extraordinary art gallery — including a
+              monumental landscape painting by Albert Bierstadt — alongside a beautifully preserved
+              Victorian reading room. Free to visit. Not to be missed.</p>
+              <div class="place-card-details">
+                <div class="place-card-detail"><span>📍</span><span>1171 Main Street, St. Johnsbury, VT</span></div>
+                <div class="place-card-detail"><span>🌐</span><span><a href="https://www.stjathenaeum.org" target="_blank" rel="noopener" style="color:var(--green-mid);">www.stjathenaeum.org</a></span></div>
+              </div>
+              <div class="place-card-tip"><strong>Gloria &amp; Staff's tip:</strong> The Athenaeum and Fairbanks Museum are next door to each other — do both in the same afternoon.</div>
+            </div>
+          </article>
+
+          <article class="place-card fade-up">
+            <div class="place-card-header">
+              <div class="place-card-title">
+                <span class="place-card-icon">🍁</span>
+                <h3>Maple Grove Farms</h3>
+              </div>
+              <span class="place-card-dist">~15 min · St. Johnsbury</span>
+            </div>
+            <div class="place-card-body">
+              <p class="place-card-category">Vermont Maple · Factory Tour &amp; Shop</p>
+              <p>Home of the world's largest maple candy factory. Tour the facility, learn
+              about the maple sugaring process, and sample Vermont's most iconic product
+              in its many forms — syrup, candy, granules, and more. A genuinely fun and
+              delicious stop for all ages.</p>
+              <div class="place-card-details">
+                <div class="place-card-detail"><span>📍</span><span>1052 Portland Street, St. Johnsbury, VT</span></div>
+                <div class="place-card-detail"><span>🌐</span><span><a href="https://www.maplegrove.com" target="_blank" rel="noopener" style="color:var(--green-mid);">www.maplegrove.com</a></span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="place-card fade-up fade-up-delay-1">
+            <div class="place-card-header">
+              <div class="place-card-title">
+                <span class="place-card-icon">🏘️</span>
+                <h3>Peacham Village</h3>
+              </div>
+              <span class="place-card-dist">~20 min</span>
+            </div>
+            <div class="place-card-body">
+              <p class="place-card-category">Quintessential Vermont Village</p>
+              <p>One of Vermont's most photographed and beloved villages — a white-steepled
+              church, general store, historic library, and rolling farmland views that look
+              unchanged since the 1800s. The annual Peacham Fall Foliage Festival draws
+              visitors from around New England. The Peacham Café is a local gem for a
+              simple, honest meal.</p>
+              <div class="place-card-details">
+                <div class="place-card-detail"><span>📍</span><span>Peacham, VT (~20 min west)</span></div>
+              </div>
+              <div class="place-card-tip"><strong>Gloria &amp; Staff's tip:</strong> Peacham in October is beyond description. Make the drive even if it's just to have a cup of coffee and walk the village green.</div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         DINING & LOCAL FOOD
+    ══════════════════════════════════════ -->
+    <section id="dining" class="guide-section section" style="background:var(--cream-dark);">
+      <div class="container">
+        <div class="guide-section-label fade-up">
+          <span class="guide-section-emoji">🍽️</span>
+          <h2>Dining &amp; Local Food</h2>
+        </div>
+
+        <div class="dining-list-section">
+
+          <div class="dining-mini-card fade-up">
+            <div class="cuisine">Wells River · ~10 min</div>
+            <h4>P&amp;H Truck Stop</h4>
+            <p>A Vermont legend — and a genuine American institution. This Food Network–featured
+            diner (one of their "Top 10 Best Truck Stops in the US") has been serving truckers,
+            locals, and travelers since 1980. Famous for the cinnamon raisin bread, maple cream
+            pie, Big Rig burgers, and daily specials like chicken and biscuits. Go for the pie.</p>
+            <div class="location-tag"><span>📍</span> 2886 Route 302, Wells River, VT</div>
+            <div class="place-card-tip" style="margin-top:10px;"><strong>Gloria &amp; Staff's top pick —</strong> don't leave the Northeast Kingdom without stopping here. And make sure you pick up a Maple Cream Pie.</div>
+          </div>
+
+          <div class="dining-mini-card fade-up fade-up-delay-1">
+            <div class="cuisine">St. Johnsbury · ~15 min · Thai</div>
+            <h4>Kham's Thai Cuisine</h4>
+            <p>Authentic Thai food that has been a beloved Northeast Kingdom institution for
+            over 22 years. Consistently excellent, warm service, and flavors that will
+            surprise you in the best possible way — you don't expect this caliber of Thai
+            cooking in a small Vermont city, and that's exactly the point.</p>
+            <div class="location-tag"><span>📍</span> St. Johnsbury, VT</div>
+          </div>
+
+          <div class="dining-mini-card fade-up fade-up-delay-2">
+            <div class="cuisine">St. Johnsbury · ~15 min · American</div>
+            <h4>Anthony's Diner</h4>
+            <p>Over 40 years of history in St. Johnsbury. This is the quintessential small-town
+            American diner — honest food, generous portions, and the kind of atmosphere where
+            everybody knows everybody. A perfect spot for a casual lunch after a morning at
+            the Fairbanks Museum.</p>
+            <div class="location-tag"><span>📍</span> St. Johnsbury, VT</div>
+          </div>
+
+          <div class="dining-mini-card fade-up">
+            <div class="cuisine">St. Johnsbury · ~15 min · Bakery &amp; Coffee</div>
+            <h4>Boule Bakery</h4>
+            <p>A beloved St. Johnsbury gem and the place to go for exceptional coffee and
+            handcrafted baked goods. Everything is made from scratch — 100% naturally
+            leavened sourdough breads, flaky sourdough croissants (plain, chocolate,
+            and ham &amp; cheddar), cardamom buns, seasonal pastries, and breakfast
+            sandwiches. Open seven days a week from 7 AM — perfect before a morning
+            at the Fairbanks Museum or Athenaeum.</p>
+            <div class="location-tag"><span>📍</span> 462 Railroad Street, St. Johnsbury, VT</div>
+            <div class="place-card-tip" style="margin-top:10px;"><strong>Gloria &amp; Staff's tip —</strong> get there early on weekends. The sourdough croissants sell out fast.</div>
+          </div>
+
+          <div class="dining-mini-card fade-up fade-up-delay-1">
+            <div class="cuisine">Peacham · ~20 min · Café</div>
+            <h4>Peacham Café</h4>
+            <p>A community-supported café using simple, high-quality, super-local ingredients.
+            Has become both a neighborhood hub and a destination eatery for visitors to the
+            area. Perfect for a light lunch during a Peacham village walk or foliage drive.</p>
+            <div class="location-tag"><span>📍</span> Peacham, VT</div>
+          </div>
+
+          <div class="dining-mini-card fade-up fade-up-delay-2">
+            <div class="cuisine">Burke · ~30 min · Pizza</div>
+            <h4>Farm To Fire</h4>
+            <p>Wood-fired pizza made with locally sourced ingredients. A beloved spot in the
+            Burke area, especially popular after a long day on Kingdom Trails. The wood-fired
+            crust and fresh Vermont toppings make this a standout meal after a day of outdoor
+            adventure.</p>
+            <div class="location-tag"><span>📍</span> Burke area, VT</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         ST. JOHNSBURY HIGHLIGHTS
+    ══════════════════════════════════════ -->
+    <section id="st-j" class="guide-section section" style="background:var(--white);">
+      <div class="container">
+        <div class="guide-section-label fade-up">
+          <span class="guide-section-emoji">🏙️</span>
+          <h2>St. Johnsbury — The Kingdom Capital (~15 min)</h2>
+        </div>
+        <div class="grid-2" style="gap:48px;">
+          <div class="fade-up">
+            <p style="margin-bottom:20px;">St. Johnsbury — known locally as "St. J" — is the Northeast Kingdom's largest city and cultural hub. A 15-minute drive from the inn, it offers everything from world-class museums to craft breweries, excellent restaurants, and a thriving arts scene in a beautifully preserved Victorian downtown.</p>
+            <ul style="display:flex;flex-direction:column;gap:14px;">
+              <li style="display:flex;align-items:flex-start;gap:10px;font-size:.9rem;">
+                <span style="color:var(--green-mid);font-weight:700;flex-shrink:0;">🔭</span>
+                <span><strong>Fairbanks Museum &amp; Planetarium</strong> — Vermont's only public planetarium; Victorian natural history collection</span>
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:10px;font-size:.9rem;">
+                <span style="color:var(--green-mid);font-weight:700;flex-shrink:0;">📚</span>
+                <span><strong>St. Johnsbury Athenaeum</strong> — National Historic Landmark library &amp; art gallery; the Bierstadt painting alone is worth the trip</span>
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:10px;font-size:.9rem;">
+                <span style="color:var(--green-mid);font-weight:700;flex-shrink:0;">🍁</span>
+                <span><strong>Maple Grove Farms</strong> — world's largest maple candy factory; tours and tastings</span>
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:10px;font-size:.9rem;">
+                <span style="color:var(--green-mid);font-weight:700;flex-shrink:0;">🐕</span>
+                <span><strong>Dog Mountain &amp; the Dog Chapel</strong> — 150 acres of hilltop trails, ponds, and fields; Stephen Huneck's folk art gallery; the one-of-a-kind Dog Chapel where visitors leave tributes to lost pets. Free, dogs welcome, open dawn to dusk. Bring tissues.</span>
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:10px;font-size:.9rem;">
+                <span style="color:var(--green-mid);font-weight:700;flex-shrink:0;">☕</span>
+                <span><strong>Boule Bakery</strong> — 462 Railroad St; handcrafted sourdough, flaky croissants, and excellent coffee. Open 7 AM daily — perfect before a morning at the museums</span>
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:10px;font-size:.9rem;">
+                <span style="color:var(--green-mid);font-weight:700;flex-shrink:0;">🍺</span>
+                <span><strong>Craft Brewing</strong> — St. J's growing craft brewery scene features local favorites worth exploring</span>
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:10px;font-size:.9rem;">
+                <span style="color:var(--green-mid);font-weight:700;flex-shrink:0;">🛒</span>
+                <span><strong>Farmers Markets &amp; Local Shops</strong> — locally made goods, Vermont food producers, and independent retail</span>
+              </li>
+            </ul>
+          </div>
+          <div class="fade-up fade-up-delay-1">
+            <img src="images/st-johnsbury.jpg" alt="St. Johnsbury, Vermont downtown" style="width:100%;aspect-ratio:4/3;border-radius:8px;box-shadow:var(--shadow-md);object-fit:cover;display:block;margin-bottom:20px;">
+            <div style="background:var(--green-pale);border-radius:var(--radius-lg);padding:20px;border-left:4px solid var(--green-mid);">
+              <p style="font-size:.875rem;color:var(--text-muted);margin:0;line-height:1.7;">
+                <strong style="color:var(--text-dark);">Getting there:</strong> St. Johnsbury is 15 minutes north on I-91 (Exit 21).
+                Park on Main Street and walk — the Athenaeum, Fairbanks Museum, and Maple Grove
+                Farms are all within a short distance of each other.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         SEASONS
+    ══════════════════════════════════════ -->
+    <section class="section--sm" style="background:var(--cream);">
+      <div class="container">
+        <div class="section-header fade-up">
+          <p class="eyebrow">Four Seasons</p>
+          <h2>When to Come &amp; What to Expect</h2>
+        </div>
+        <div class="seasons-strip fade-up fade-up-delay-1">
+          <div class="season-strip-item">
+            <div class="s-icon">🌸</div>
+            <h4>Spring (May–June)</h4>
+            <ul>
+              <li>Wildflowers &amp; green hills</li>
+              <li>Fishing season opens</li>
+              <li>Ben's Mill opens late May</li>
+              <li>Birding at its best</li>
+              <li>Quiet roads &amp; trails</li>
+            </ul>
+          </div>
+          <div class="season-strip-item">
+            <div class="s-icon">☀️</div>
+            <h4>Summer (July–Aug)</h4>
+            <ul>
+              <li>Harvey's Lake swimming</li>
+              <li>Connecticut River kayaking</li>
+              <li>Kingdom Trails mountain biking</li>
+              <li>Farmers markets</li>
+              <li>Long Vermont evenings</li>
+            </ul>
+          </div>
+          <div class="season-strip-item">
+            <div class="s-icon">🍂</div>
+            <h4>Fall (Sept–Oct)</h4>
+            <ul>
+              <li>World-class foliage</li>
+              <li>Peacham &amp; Burke drives</li>
+              <li>Caledonia County Fair</li>
+              <li>Cooler hiking weather</li>
+              <li>Peak Kingdom Trails season</li>
+            </ul>
+          </div>
+          <div class="season-strip-item">
+            <div class="s-icon">❄️</div>
+            <h4>Winter (nearby)</h4>
+            <ul>
+              <li>Burke Mountain skiing</li>
+              <li>Jay Peak skiing &amp; water park</li>
+              <li>VAST snowmobile trails</li>
+              <li>Snowshoeing &amp; XC skiing</li>
+              <li><em>(Inn closed Nov 1)</em></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         GETTING HERE
+    ══════════════════════════════════════ -->
+    <section id="getting-here" class="guide-section section" style="background:var(--white);">
+      <div class="container">
+        <div class="guide-section-label fade-up">
+          <span class="guide-section-emoji">🚗</span>
+          <h2>Getting to McIndoe Falls Inn</h2>
+        </div>
+        <!-- Google Maps Embed -->
+        <div class="map-placeholder fade-up" style="border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-md);margin-bottom:40px;">
+          <iframe
+            src="https://maps.google.com/maps?q=4586+US+Route+5,+Barnet,+Vermont+05050&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            width="100%" height="420"
+            style="border:0;display:block;"
+            allowfullscreen loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="McIndoe Falls Inn location — 4586 US Route 5, Barnet, Vermont">
+          </iframe>
+        </div>
+
+        <div class="grid-3">
+          <div class="policy-card fade-up" style="background:var(--white);border-radius:var(--radius-lg);padding:24px;border:1px solid var(--border-light);border-top:3px solid var(--green-mid);">
+            <h4>🚗 By Car</h4>
+            <p style="font-size:.875rem;color:var(--text-muted);line-height:1.7;">
+              I-91 to <strong>Exit 18 (Barnet)</strong>. Head south on US Route 5
+              for approximately 2.5 miles. The inn is at 4586 US Route 5 on your left.
+              Free on-site parking. Verizon has the best cell service in this area.
+            </p>
+          </div>
+          <div class="policy-card fade-up fade-up-delay-1" style="background:var(--white);border-radius:var(--radius-lg);padding:24px;border:1px solid var(--border-light);border-top:3px solid var(--green-mid);">
+            <h4>🚌 By Bus / Train</h4>
+            <p style="font-size:.875rem;color:var(--text-muted);line-height:1.7;">
+              Amtrak's Vermonter stops in St. Johnsbury (~15 min).
+              Greyhound and Vermont Translines serve the area.
+              Contact us about pickup options from nearby stations.
+            </p>
+          </div>
+          <div class="policy-card fade-up fade-up-delay-2" style="background:var(--white);border-radius:var(--radius-lg);padding:24px;border:1px solid var(--border-light);border-top:3px solid var(--green-mid);">
+            <h4>✈️ By Air</h4>
+            <p style="font-size:.875rem;color:var(--text-muted);line-height:1.7;">
+              Burlington International (BTV) ~1.5 hrs west.
+              Manchester-Boston Regional (MHT) ~2 hrs south.
+              A rental car is strongly recommended for exploring the Kingdom.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOOK CTA -->
+    <section id="book" class="cta-banner">
+      <div class="cta-banner-overlay"></div>
+      <div class="container">
+        <div class="cta-banner-content">
+          <h2 class="fade-up">Ready to Explore the Kingdom?</h2>
+          <p class="tagline fade-up fade-up-delay-1">
+            Book your room and let Gloria and Staff show you the Vermont they know and love.
+          </p>
+          <div class="cta-buttons fade-up fade-up-delay-2">
+            <a href="https://v2.reservationkey.com/87810/reserve/" target="_blank" rel="noopener" class="btn btn-gold btn-lg">Book Your Stay</a>
+            <a href="contact.html" class="btn btn-white btn-lg">Ask Gloria &amp; Staff</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>McIndoe Falls Inn</h3>
+          <p class="footer-brand-sub">Vermont's Northeast Kingdom</p>
+          <p>A 216-year-old Greek Revival inn in Barnet, Vermont. Family-owned for over 50 years.</p>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>4586 US Route 5, Barnet, Vermont 05050</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.67 19.79 19.79 0 01.22 1.07a2 2 0 012-2.17H5.5a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2.03z"/></svg>
+            <a href="tel:+18026332240">802-633-2240</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="our-inn.html">The Inn</a></li>
+            <li><a href="accommodations.html">Rooms &amp; Apartments</a></li>
+            <li><a href="local-area.html">Local Area</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Local Highlights</h4>
+          <ul class="footer-links">
+            <li><a href="#bens-mill">Ben's Mill</a></li>
+            <li><a href="#lakes">Harvey's Lake</a></li>
+            <li><a href="#karme">Karmê Chöling</a></li>
+            <li><a href="#kingdom-trails">Kingdom Trails</a></li>
+            <li><a href="#skiing">Burke &amp; Jay Peak</a></li>
+            <li><a href="#st-j">St. Johnsbury</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Season</h4>
+          <div class="footer-season-block">
+            <div class="season-label">Open</div>
+            <strong>May 1 – October 31</strong>
+          </div>
+          <div class="social-links" style="margin-top:24px;">
+            <a href="https://www.facebook.com/McIndoeFallsInn/" class="social-link" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2025 McIndoe Falls Inn &nbsp;·&nbsp; Barnet, Vermont</span>
+        <span>Built with care for Vermont's Northeast Kingdom</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

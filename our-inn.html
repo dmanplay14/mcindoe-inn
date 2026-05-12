@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Inn | McIndoe Falls Inn — Vermont's Northeast Kingdom</title>
+  <meta name="description" content="Learn about McIndoe Falls Inn — a 216-year-old Greek Revival home in Vermont's Northeast Kingdom, operated by Gloria Laborie and family for over 50 years.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&family=Cormorant+Garamond:ital,wght@0,400;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* ── Page-specific styles ── */
+    .inn-feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin: 56px 0;
+    }
+    .inn-feature-item {
+      text-align: center;
+      padding: 32px 24px;
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-light);
+      transition: var(--transition);
+    }
+    .inn-feature-item:hover {
+      border-color: var(--green-sage);
+      box-shadow: var(--shadow-sm);
+      transform: translateY(-4px);
+    }
+    .inn-feature-icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+    .inn-feature-item h4 {
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+    .inn-feature-item p {
+      font-size: .875rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .timeline {
+      position: relative;
+      padding-left: 40px;
+      margin: 40px 0;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 12px;
+      top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--green-mid), var(--green-sage));
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 32px;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -32px;
+      top: 6px;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--green-mid);
+      border: 2px solid var(--white);
+      box-shadow: 0 0 0 2px var(--green-sage);
+    }
+    .timeline-year {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      margin-bottom: 4px;
+    }
+    .timeline-item h4 { margin-bottom: 6px; font-size: 1rem; }
+    .timeline-item p  { font-size: .875rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
+    .inn-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 48px;
+    }
+    .inn-gallery-item {
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      transition: var(--transition);
+    }
+    .inn-gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .inn-gallery-item:hover { transform: scale(.99); }
+    @media (max-width: 1024px) {
+      .inn-feature-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .inn-feature-grid { grid-template-columns: 1fr; }
+      .inn-gallery-grid { grid-template-columns: 1fr; }
+      .inn-gallery-item:first-child { grid-column: span 1; }
+      .timeline { padding-left: 28px; }
+    }
+    @media (max-width: 480px) {
+      .inn-feature-grid { gap: 16px; }
+      .inn-feature-item { padding: 24px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header scrolled" role="banner">
+    <div class="header-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-text">McIndoe Falls Inn</span>
+        <span class="nav-logo-sub">Vermont's Northeast Kingdom</span>
+      </a>
+      <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav class="nav-menu" aria-label="Primary navigation">
+        <a href="index.html"          class="nav-link">Home</a>
+        <a href="our-inn.html"        class="nav-link">The Inn</a>
+        <a href="accommodations.html" class="nav-link">Rooms</a>
+        <a href="local-area.html"     class="nav-link">Local Area</a>
+        <a href="contact.html"        class="nav-link">Contact</a>
+        <a href="https://v2.reservationkey.com/87810/reserve/" target="_blank" rel="noopener"               class="nav-link nav-book">Book Your Stay</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="page-hero">
+      <div class="page-hero-content">
+        <p class="eyebrow">Our Story</p>
+        <h1>The Inn</h1>
+        <p class="tagline">216 years of Vermont hospitality in one extraordinary home</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="breadcrumb-sep">›</span>
+          <span>The Inn</span>
+        </nav>
+      </div>
+    </section>
+
+    <!-- INTRO -->
+    <section class="section" style="background:var(--cream);">
+      <div class="container">
+        <div class="grid-2">
+          <div>
+            <p class="eyebrow fade-up">Est. circa 1808</p>
+            <h2 class="fade-up fade-up-delay-1">A Home Full of History, a Heart Full of Welcome</h2>
+            <p class="fade-up fade-up-delay-2">
+              When Colonel Alexander Harvey and his fellow Scottish settlers arrived in Barnet,
+              Vermont in the 1770s, they found hills that reminded them of home — rolling, green,
+              and alive with possibility. The community they built along the Connecticut River
+              became one of Vermont's most vital, with McIndoe Falls at its heart.
+            </p>
+            <p class="fade-up fade-up-delay-2">
+              The building that would become McIndoe Falls Inn rose around 1808 in the Greek
+              Revival style then sweeping New England — a confident, graceful architecture that
+              declared permanence and pride. The hand-blown glass windows, still in their
+              original frames, are among the oldest surviving in Vermont's Northeast Kingdom.
+            </p>
+            <p class="fade-up fade-up-delay-2">
+              Today, Gloria Laborie and her family have stewarded this remarkable property
+              for over 50 years — welcoming guests with the same warmth and personal touch
+              that has always defined this place.
+            </p>
+          </div>
+          <div class="fade-up fade-up-delay-2">
+            <img src="images/inn-parlor.jpg" alt="The inn's historic parlor" style="width:100%;aspect-ratio:4/5;border-radius:8px;box-shadow:var(--shadow-lg);object-fit:cover;display:block;">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES GRID -->
+    <section class="section--sm" style="background:var(--green-pale);">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow fade-up">What Makes Us Unique</p>
+          <h2 class="fade-up fade-up-delay-1">The Character of the Inn</h2>
+        </div>
+        <div class="inn-feature-grid">
+          <div class="inn-feature-item fade-up">
+            <div class="inn-feature-icon">🏛️</div>
+            <h4>Greek Revival Architecture</h4>
+            <p>Built circa 1808, the inn's symmetrical facade, tall columns, and classical proportions are textbook Greek Revival — a style chosen to evoke permanence and civility.</p>
+          </div>
+          <div class="inn-feature-item fade-up fade-up-delay-1">
+            <div class="inn-feature-icon">🔍</div>
+            <h4>Original Hand-Blown Glass</h4>
+            <p>The wavy, imperfect window glass — hand-blown by 19th-century artisans — still frames every view of Vermont. Morning light through these windows is something to witness.</p>
+          </div>
+          <div class="inn-feature-item fade-up fade-up-delay-2">
+            <div class="inn-feature-icon">📐</div>
+            <h4>Thirteen-Foot Ceilings</h4>
+            <p>The soaring ceilings throughout the main house create an airy grandeur rare in surviving buildings of this era, and keep rooms cool on warm Vermont summer days.</p>
+          </div>
+          <div class="inn-feature-item fade-up">
+            <div class="inn-feature-icon">🔥</div>
+            <h4>Common Room &amp; Fireplace</h4>
+            <p>The heart of the inn. Gather by the fire with fellow guests, play a game, share a glass of wine, or simply sit and watch the flames. Vermont evenings are made for this.</p>
+          </div>
+          <div class="inn-feature-item fade-up fade-up-delay-1">
+            <div class="inn-feature-icon">🌍</div>
+            <h4>Antiques from Around the World</h4>
+            <p>Decades of careful collecting fill every room with curiosities, fine furniture, and art gathered from around the globe — engaging, not cluttered; elegant, not stuffy.</p>
+          </div>
+          <div class="inn-feature-item fade-up fade-up-delay-2">
+            <div class="inn-feature-icon">🌿</div>
+            <h4>Kitchen Garden &amp; Grounds</h4>
+            <p>The inn's vegetable and herb garden grows through summer and early fall. The lawn, garden paths, and peaceful outdoor spaces are yours to wander — pure Vermont at every turn.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="section" style="background:var(--white);">
+      <div class="container">
+        <div class="grid-2">
+          <div>
+            <p class="eyebrow fade-up">History</p>
+            <h2 class="fade-up fade-up-delay-1">A Village, a Home, a Legacy</h2>
+            <p class="fade-up fade-up-delay-2" style="margin-bottom:32px;">
+              McIndoe Falls is one of Barnet's five historic village centers, each with its own
+              distinct character shaped by the people and industries that called it home.
+            </p>
+            <div class="timeline fade-up fade-up-delay-2">
+              <div class="timeline-item">
+                <div class="timeline-year">1763</div>
+                <h4>Barnet Chartered</h4>
+                <p>The town of Barnet, Vermont is officially chartered. Scottish immigrants begin arriving, drawn by landscape that echoes their homeland.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-year">1770s–1780s</div>
+                <h4>Scottish Settlement</h4>
+                <p>Waves of Scottish settlers establish Barnet's five villages. The McIndoe family — for whom the falls are named — become prominent landowners along the Connecticut River.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-year">c. 1808</div>
+                <h4>The Inn Is Built</h4>
+                <p>Construction of what would become McIndoe Falls Inn in the Greek Revival style. Original hand-blown glass windows, 13-foot ceilings, and fine woodwork define the structure.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-year">Mid-1800s</div>
+                <h4>Village at Its Peak</h4>
+                <p>McIndoe Falls becomes the most populous village in Barnet, home to the largest lumber operation in northern Vermont — 80 employees, 15 million board feet annually.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-year">1853</div>
+                <h4>McIndoes Academy Founded</h4>
+                <p>The Academy opens, serving the community for over a century until 1969. The building still stands, listed on the National Register of Historic Places.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-year">1885</div>
+                <h4>Post Office Established</h4>
+                <p>The village post office is established as "McIndoes Falls," cementing the community's identity and ongoing importance to the region.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-year">1970s – Present</div>
+                <h4>Gloria &amp; Family</h4>
+                <p>Gloria Laborie and family take stewardship of the inn, operating it as a beloved bed &amp; breakfast for over 50 years — earning the #1 B&amp;B ranking in McIndoe Falls.</p>
+              </div>
+            </div>
+          </div>
+          <div class="fade-up fade-up-delay-2">
+            <img src="images/inn-historic.jpg" alt="Historic McIndoe Falls Inn" style="width:100%;aspect-ratio:3/4;border-radius:8px;box-shadow:var(--shadow-lg);object-fit:cover;display:block;margin-bottom:20px;">
+            <div style="background:var(--green-pale);border-radius:var(--radius-lg);padding:24px;border-left:4px solid var(--green-mid);">
+              <p style="font-family:var(--font-script);font-style:italic;font-size:1.15rem;color:var(--text-dark);line-height:1.6;margin:0;">
+                "Our 216-year-old, eight-bedroom Bed and Breakfast Inn nestled in the heart of
+                Vermont's Northeast Kingdom offers you a peaceful and genuinely unique experience."
+              </p>
+              <cite style="display:block;margin-top:12px;font-size:.8rem;color:var(--text-muted);font-style:normal;">
+                — Gloria Laborie, Innkeeper
+              </cite>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMON AREA & GROUNDS -->
+    <section id="common-area" class="section" style="background:var(--cream-dark);">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow fade-up">Common Area &amp; Grounds</p>
+          <h2 class="fade-up fade-up-delay-1">Spaces to Gather, Relax &amp; Breathe</h2>
+          <p class="tagline fade-up fade-up-delay-2">The inn is more than a place to sleep — it's a place to settle in</p>
+          <div class="divider fade-up"><div class="divider-leaf"></div></div>
+        </div>
+        <div class="grid-2">
+          <div class="fade-up">
+            <img src="images/common-room.jpg" alt="Common room with fireplace at McIndoe Falls Inn" style="width:100%;aspect-ratio:4/3;border-radius:8px;box-shadow:var(--shadow-md);object-fit:cover;display:block;">
+          </div>
+          <div>
+            <p class="fade-up fade-up-delay-1" style="margin-bottom:20px;">
+              Beyond your room, the inn offers inviting shared spaces that make a stay here
+              feel more like visiting old friends than checking into a property. The common
+              room with its fireplace is the natural gathering point — whether you want
+              company or just a warm, quiet corner.
+            </p>
+            <p class="fade-up fade-up-delay-1" style="margin-bottom:28px;">
+              Step outside and you're in Vermont. The kitchen garden, the lawn, and the
+              unhurried rhythm of the grounds are as much a part of the experience as the
+              historic rooms themselves.
+            </p>
+            <ul style="display:flex;flex-direction:column;gap:12px;" class="fade-up fade-up-delay-2">
+              <li style="display:flex;align-items:center;gap:12px;font-size:.9rem;color:var(--text-body);">
+                <span style="color:var(--green-mid);font-size:1.1rem;">✓</span>
+                Common room with working fireplace
+              </li>
+              <li style="display:flex;align-items:center;gap:12px;font-size:.9rem;color:var(--text-body);">
+                <span style="color:var(--green-mid);font-size:1.1rem;">✓</span>
+                Coffee, tea &amp; hot cocoa always available
+              </li>
+              <li style="display:flex;align-items:center;gap:12px;font-size:.9rem;color:var(--text-body);">
+                <span style="color:var(--green-mid);font-size:1.1rem;">✓</span>
+                Games, ice, and glasses provided for guests
+              </li>
+              <li style="display:flex;align-items:center;gap:12px;font-size:.9rem;color:var(--text-body);">
+                <span style="color:var(--green-mid);font-size:1.1rem;">✓</span>
+                Kitchen garden and peaceful outdoor grounds
+              </li>
+              <li style="display:flex;align-items:center;gap:12px;font-size:.9rem;color:var(--text-body);">
+                <span style="color:var(--green-mid);font-size:1.1rem;">✓</span>
+                Free WiFi and on-site parking included
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section" style="background:var(--cream);">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow fade-up">Photo Gallery</p>
+          <h2 class="fade-up fade-up-delay-1">See the Inn</h2>
+        </div>
+        <div class="inn-gallery-grid">
+          <div class="inn-gallery-item fade-up">
+            <img src="images/gallery-exterior.jpg" alt="Inn exterior in autumn" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="inn-gallery-item fade-up fade-up-delay-1">
+            <img src="images/gallery-room1.jpg" alt="Bedroom interior" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="inn-gallery-item fade-up fade-up-delay-1">
+            <img src="images/gallery-grounds.jpg" alt="Inn grounds and garden" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="inn-gallery-item fade-up fade-up-delay-2">
+            <img src="images/gallery-common.jpg" alt="Common room with fireplace" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="inn-gallery-item fade-up fade-up-delay-2">
+            <img src="images/gallery-garden.jpg" alt="Inn garden" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="inn-gallery-item fade-up fade-up-delay-3">
+            <img src="images/gallery-room2.jpg" alt="Another bedroom" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="book" class="cta-banner">
+      <div class="cta-banner-overlay"></div>
+      <div class="container">
+        <div class="cta-banner-content">
+          <h2 class="fade-up">Experience It for Yourself</h2>
+          <p class="tagline fade-up fade-up-delay-1">Open May 1 – October 31 &nbsp;·&nbsp; Barnet, Vermont</p>
+          <div class="cta-buttons fade-up fade-up-delay-2">
+            <a href="https://v2.reservationkey.com/87810/reserve/" target="_blank" rel="noopener" class="btn btn-gold btn-lg">Book Your Stay</a>
+            <a href="accommodations.html" class="btn btn-white btn-lg">View All Rooms</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>McIndoe Falls Inn</h3>
+          <p class="footer-brand-sub">Vermont's Northeast Kingdom</p>
+          <p>A 216-year-old Greek Revival bed &amp; breakfast in Barnet, Vermont.</p>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>4586 US Route 5, Barnet, Vermont 05050</span>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="our-inn.html">The Inn</a></li>
+            <li><a href="accommodations.html">Rooms</a></li>
+            <li><a href="local-area.html">Local Area</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Season</h4>
+          <div class="footer-season-block">
+            <div class="season-label">Open</div>
+            <strong>May 1 – October 31</strong>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Follow Along</h4>
+          <div class="social-links" style="margin-top:12px;">
+            <a href="https://www.facebook.com/McIndoeFallsInn/" class="social-link" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2025 McIndoe Falls Inn &nbsp;·&nbsp; Barnet, Vermont</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

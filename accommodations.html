@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rooms &amp; Accommodations | McIndoe Falls Inn — Vermont B&amp;B</title>
+  <meta name="description" content="Seven uniquely styled rooms with private baths, two full apartments, and a loft — each with its own personality and history at McIndoe Falls Inn in Vermont's Northeast Kingdom.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&family=Cormorant+Garamond:ital,wght@0,400;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* ── Accommodations-specific styles ── */
+    .room-full-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-bottom: 40px;
+      transition: var(--transition);
+    }
+    .room-full-card:hover { box-shadow: var(--shadow-md); }
+    .room-full-card.reverse { direction: rtl; }
+    .room-full-card.reverse > * { direction: ltr; }
+    .room-full-card-img {
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .room-full-card-img img { width: 100%; height: 100%; object-fit: cover; }
+    .room-full-card-body {
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .room-full-card-body .eyebrow { margin-bottom: 10px; }
+    .room-full-card-body h3 { font-size: 1.6rem; margin-bottom: 16px; }
+    .room-full-card-body p  { font-size: .925rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 20px; }
+    .room-amenities-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .room-amenity-tag {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--green-pale);
+      border: 1px solid var(--border);
+      color: var(--green-deep);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      padding: 5px 12px;
+      border-radius: 20px;
+    }
+    .room-amenity-tag span { font-size: .9rem; }
+
+    .apartments-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-bottom: 56px;
+    }
+    .apartment-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+    .apartment-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
+    .apartment-card-img {
+      aspect-ratio: 16/9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .apartment-card-body { padding: 28px; }
+    .apartment-card-body .eyebrow { margin-bottom: 8px; }
+    .apartment-card-body h3 { font-size: 1.35rem; margin-bottom: 12px; }
+    .apartment-card-body p  { font-size: .875rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; }
+
+    .policies-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .policy-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      border: 1px solid var(--border-light);
+      border-top: 3px solid var(--green-mid);
+    }
+    .policy-card h4 { margin-bottom: 12px; font-size: 1rem; color: var(--text-dark); }
+    .policy-card p, .policy-card li {
+      font-size: .875rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .policy-card ul { padding-left: 16px; }
+    .policy-card li { list-style: disc; margin-bottom: 6px; }
+
+    @media (max-width: 1024px) {
+      .room-full-card { grid-template-columns: 1fr; }
+      .room-full-card.reverse { direction: ltr; }
+      .apartments-grid { grid-template-columns: 1fr 1fr; }
+      .policies-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .apartments-grid { grid-template-columns: 1fr; }
+      /* Hide pipe separators in the intro strip — they orphan when items wrap */
+      .intro-sep { display: none; }
+    }
+    @media (max-width: 640px) {
+      .policies-grid { grid-template-columns: 1fr; }
+      .room-full-card-body { padding: 22px 20px; }
+      .room-amenities-list { gap: 8px; }
+    }
+    @media (max-width: 480px) {
+      .room-full-card-body { padding: 18px 16px; }
+      .room-full-card-body h3 { font-size: 1.3rem; }
+      .apartment-card-body { padding: 20px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header scrolled" role="banner">
+    <div class="header-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-text">McIndoe Falls Inn</span>
+        <span class="nav-logo-sub">Vermont's Northeast Kingdom</span>
+      </a>
+      <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav class="nav-menu" aria-label="Primary navigation">
+        <a href="index.html"           class="nav-link">Home</a>
+        <a href="our-inn.html"         class="nav-link">The Inn</a>
+        <a href="accommodations.html"  class="nav-link">Rooms</a>
+        <a href="local-area.html"      class="nav-link">Local Area</a>
+        <a href="contact.html"         class="nav-link">Contact</a>
+        <a href="https://v2.reservationkey.com/87810/reserve/" target="_blank" rel="noopener"                class="nav-link nav-book">Book Your Stay</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="page-hero-content">
+        <p class="eyebrow">Accommodations</p>
+        <h1>Rooms &amp; Apartments</h1>
+        <p class="tagline">Every room has a story, a personality, a history</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="breadcrumb-sep">›</span>
+          <span>Rooms &amp; Accommodations</span>
+        </nav>
+      </div>
+    </section>
+
+    <!-- INTRO STRIP -->
+    <section class="section--sm" style="background:var(--green-deep);">
+      <div class="container text-center">
+        <div style="display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap;">
+          <div style="color:rgba(255,255,255,.8);font-size:.875rem;display:flex;align-items:center;gap:10px;">
+            <span style="color:var(--gold-light);font-size:1.2rem;">🛁</span>
+            <span><strong style="color:var(--white);">Suite-Style Rooms</strong> — soaking &amp; clawfoot tubs</span>
+          </div>
+          <div class="intro-sep" style="color:rgba(255,255,255,.3);">|</div>
+          <div style="color:rgba(255,255,255,.8);font-size:.875rem;display:flex;align-items:center;gap:10px;">
+            <span style="color:var(--gold-light);font-size:1.2rem;">🛏️</span>
+            <span><strong style="color:var(--white);">Classic Inn Rooms</strong> — queen &amp; double beds</span>
+          </div>
+          <div class="intro-sep" style="color:rgba(255,255,255,.3);">|</div>
+          <div style="color:rgba(255,255,255,.8);font-size:.875rem;display:flex;align-items:center;gap:10px;">
+            <span style="color:var(--gold-light);font-size:1.2rem;">🏡</span>
+            <span><strong style="color:var(--white);">Apartments &amp; Loft</strong> — full kitchens, extended stay</span>
+          </div>
+          <div class="intro-sep" style="color:rgba(255,255,255,.3);">|</div>
+          <div style="color:rgba(255,255,255,.8);font-size:.875rem;display:flex;align-items:center;gap:10px;">
+            <span style="color:var(--gold-light);font-size:1.2rem;">🐾</span>
+            <span><strong style="color:var(--white);">All Rooms Pet Friendly</strong></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INN ROOMS -->
+    <section class="section" style="background:var(--cream);">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow fade-up">Main House</p>
+          <h2 class="fade-up fade-up-delay-1">The Inn Rooms</h2>
+          <p class="tagline fade-up fade-up-delay-2">
+            Newly renovated rooms with private baths — each with its own character shaped by 216 years of history
+          </p>
+          <div class="divider fade-up"><div class="divider-leaf"></div></div>
+        </div>
+
+        <!-- Suite-Style Rooms -->
+        <article class="room-full-card fade-up" aria-label="Suite-Style Rooms">
+          <div class="room-full-card-img">
+            <img src="images/room-suite.jpg" alt="Suite-style room with soaking tub">
+          </div>
+          <div class="room-full-card-body">
+            <p class="eyebrow">Inn Room · Suite Style</p>
+            <h3>Suite-Style Rooms</h3>
+            <p>Our larger inn rooms offer an elevated experience with thoughtful details that
+            set them apart. Featuring either a daybed for additional lounging space or a
+            luxurious soaking tub — including stunning clawfoot tubs — these rooms are
+            individually furnished with period antiques and newly renovated throughout.
+            Each one has its own personality shaped by two centuries of this house's story.</p>
+            <ul class="room-amenities-list">
+              <li class="room-amenity-tag"><span>🛁</span> Soaking or Clawfoot Tub</li>
+              <li class="room-amenity-tag"><span>🛋️</span> Daybed (select rooms)</li>
+              <li class="room-amenity-tag"><span>🚿</span> Private Bath</li>
+              <li class="room-amenity-tag"><span>🐾</span> Pet Friendly</li>
+              <li class="room-amenity-tag"><span>📶</span> Free WiFi</li>
+              <li class="room-amenity-tag"><span>🅿️</span> Free Parking</li>
+              <li class="room-amenity-tag"><span>☕</span> Coffee &amp; Tea Available</li>
+            </ul>
+            <a href="https://v2.reservationkey.com/87810/reserve/" target="_blank" rel="noopener" class="btn btn-primary">Book This Room</a>
+          </div>
+        </article>
+
+        <!-- Classic Inn Rooms -->
+        <article class="room-full-card reverse fade-up" aria-label="Classic Inn Rooms">
+          <div class="room-full-card-img">
+            <img src="images/room-classic.jpg" alt="Classic inn room with queen bed">
+          </div>
+          <div class="room-full-card-body">
+            <p class="eyebrow">Inn Room · Queen or Double</p>
+            <h3>Classic Inn Rooms</h3>
+            <p>Our classic inn rooms are the heart of the McIndoe Falls experience — newly
+            renovated, individually furnished with antiques, and each carrying its own warmth
+            and character. Available with either a queen bed or two double beds, they are
+            perfect for couples, solo travelers, or friends traveling together. Wake to Vermont
+            mornings through hand-blown glass windows with the quiet of the Northeast Kingdom
+            just outside.</p>
+            <ul class="room-amenities-list">
+              <li class="room-amenity-tag"><span>🛏️</span> Queen or Double Beds</li>
+              <li class="room-amenity-tag"><span>🚿</span> Private Bath</li>
+              <li class="room-amenity-tag"><span>🐾</span> Pet Friendly</li>
+              <li class="room-amenity-tag"><span>📶</span> Free WiFi</li>
+              <li class="room-amenity-tag"><span>🅿️</span> Free Parking</li>
+              <li class="room-amenity-tag"><span>☕</span> Coffee &amp; Tea Available</li>
+            </ul>
+            <a href="https://v2.reservationkey.com/87810/reserve/" target="_blank" rel="noopener" class="btn btn-primary">Book This Room</a>
+          </div>
+        </article>
+
+        <div class="text-center fade-up" style="margin-top:16px;padding:24px;background:var(--green-pale);border-radius:var(--radius-lg);border:1px solid var(--border);">
+          <p style="font-size:.925rem;color:var(--text-muted);margin:0;">
+            <strong style="color:var(--text-dark);">All inn rooms include:</strong>
+            &nbsp;Newly renovated private bath &nbsp;·&nbsp; Pet friendly &nbsp;·&nbsp;
+            Coffee, tea &amp; hot cocoa &nbsp;·&nbsp; Free WiFi &amp; parking &nbsp;·&nbsp;
+            Common room with fireplace access &nbsp;·&nbsp; Gloria and Staff's local expertise
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ANNEX APARTMENTS -->
+    <section class="section" style="background:var(--green-pale);">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow fade-up">The Annex Building</p>
+          <h2 class="fade-up fade-up-delay-1">Apartments &amp; The Loft</h2>
+          <p class="tagline fade-up fade-up-delay-2">
+            More space, more flexibility — ideal for extended stays and independent travelers
+          </p>
+          <div class="divider fade-up"><div class="divider-leaf"></div></div>
+        </div>
+
+        <div class="apartments-grid">
+          <!-- Apartment 1 -->
+          <article class="apartment-card fade-up" aria-label="Full Apartment">
+            <div class="apartment-card-img">
+              <img src="images/apartment-1.jpg" alt="Full apartment in the annex" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div class="apartment-card-body">
+              <p class="eyebrow">Annex · Full Apartment</p>
+              <h3>Full Apartment (×2)</h3>
+              <p>Two spacious full apartments in our annex building offer everything you need
+              for a longer Vermont stay. Full kitchen, living area, private bath — your own
+              home base in the Northeast Kingdom. Extended stay discounts available.</p>
+              <ul class="room-amenities-list">
+                <li class="room-amenity-tag"><span>🍳</span> Full Kitchen</li>
+                <li class="room-amenity-tag"><span>🛁</span> Private Bath</li>
+                <li class="room-amenity-tag"><span>📶</span> Free WiFi</li>
+                <li class="room-amenity-tag"><span>🅿️</span> Free Parking</li>
+                <li class="room-amenity-tag"><span>🐾</span> Pet Friendly</li>
+                <li class="room-amenity-tag"><span>📅</span> Extended Stay</li>
+              </ul>
+              <a href="https://v2.reservationkey.com/87810/reserve/" target="_blank" rel="noopener" class="btn btn-primary">Inquire &amp; Book</a>
+            </div>
+          </article>
+
+          <!-- Loft -->
+          <article class="apartment-card fade-up fade-up-delay-1" aria-label="Loft Apartment">
+            <div class="apartment-card-img">
+              <img src="images/loft.jpg" alt="The loft apartment in the annex" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div class="apartment-card-body">
+              <p class="eyebrow">Annex · Loft Apartment</p>
+              <h3>The Loft</h3>
+              <p>A one-of-a-kind loft in the annex — open, airy, and full of rustic Vermont
+              character. Exposed beams and natural light create an intimate retreat with a
+              full kitchen, making it perfect for extended stays as well as shorter visits.
+              Ideal for a solo traveler or couple who want something a little different and
+              the freedom of their own space in the Northeast Kingdom.</p>
+              <ul class="room-amenities-list">
+                <li class="room-amenity-tag"><span>🍳</span> Full Kitchen</li>
+                <li class="room-amenity-tag"><span>🏠</span> Loft Layout</li>
+                <li class="room-amenity-tag"><span>🚿</span> Private Bath</li>
+                <li class="room-amenity-tag"><span>🐾</span> Pet Friendly</li>
+                <li class="room-amenity-tag"><span>📅</span> Extended Stay</li>
+                <li class="room-amenity-tag"><span>📶</span> Free WiFi</li>
+                <li class="room-amenity-tag"><span>🅿️</span> Free Parking</li>
+              </ul>
+              <a href="https://v2.reservationkey.com/87810/reserve/" target="_blank" rel="noopener" class="btn btn-primary">Inquire &amp; Book</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="text-center fade-up">
+          <p style="font-size:.875rem;color:var(--text-muted);max-width:560px;margin:0 auto 24px;">
+            Extended stay discounts are available for the apartments and the loft — all three
+            have full kitchens and are pet friendly. Inquire directly with Gloria and Staff
+            about weekly or multi-week rates.
+          </p>
+          <a href="contact.html" class="btn btn-outline">Contact Us to Inquire</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- POLICIES -->
+    <section class="section" style="background:var(--white);">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow fade-up">Before You Arrive</p>
+          <h2 class="fade-up fade-up-delay-1">Policies &amp; Information</h2>
+          <div class="divider fade-up"><div class="divider-leaf"></div></div>
+        </div>
+        <div class="policies-grid">
+          <div class="policy-card fade-up">
+            <h4>📅 Season &amp; Check-In</h4>
+            <ul>
+              <li>Open May 1 through October 31</li>
+              <li>Check-in: 3:00 PM – 7:00 PM</li>
+              <li>Check-out: by 11:00 AM</li>
+              <li>Late arrivals — please call ahead</li>
+            </ul>
+          </div>
+          <div class="policy-card fade-up fade-up-delay-1">
+            <h4>☕ Common Area</h4>
+            <ul>
+              <li>Coffee, tea &amp; hot cocoa always available</li>
+              <li>Common room with fireplace open to all guests</li>
+              <li>Games, ice, and glasses provided</li>
+              <li>Relaxed, welcoming atmosphere all day</li>
+            </ul>
+          </div>
+          <div class="policy-card fade-up fade-up-delay-2">
+            <h4>🐾 Pets</h4>
+            <ul>
+              <li>All rooms &amp; apartments are pet friendly</li>
+              <li>Please mention pets when booking</li>
+              <li>Additional pet fee may apply</li>
+              <li>We have an enclosed outdoor dog park</li>
+            </ul>
+          </div>
+          <div class="policy-card fade-up">
+            <h4>❌ Cancellations</h4>
+            <ul>
+              <li>Cancel 14+ days ahead: full refund</li>
+              <li>7–14 days: 50% refund</li>
+              <li>Under 7 days: no refund</li>
+              <li>Contact us to discuss exceptions</li>
+            </ul>
+          </div>
+          <div class="policy-card fade-up fade-up-delay-1">
+            <h4>📋 Extended Stays</h4>
+            <ul>
+              <li>Weekly rates available for apartments &amp; loft</li>
+              <li>Full kitchen in both apartments and the loft</li>
+              <li>Multi-night discounts may apply</li>
+              <li>Contact Gloria and Staff directly to discuss</li>
+            </ul>
+          </div>
+          <div class="policy-card fade-up fade-up-delay-2">
+            <h4>📍 Getting Here</h4>
+            <ul>
+              <li>4586 US Route 5, Barnet VT 05050</li>
+              <li>2.5 miles from I-91, Exit 18</li>
+              <li>GPS-friendly — on US Route 5</li>
+              <li>Free on-site parking</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOOKING CTA -->
+    <section id="book" class="cta-banner">
+      <div class="cta-banner-overlay"></div>
+      <div class="container">
+        <div class="cta-banner-content">
+          <div class="cta-season fade-up">
+            <span>📅</span> Open May 1 – October 31
+          </div>
+          <h2 class="fade-up fade-up-delay-1">Reserve Your Room</h2>
+          <p class="tagline fade-up fade-up-delay-2">
+            Free WiFi &amp; parking &nbsp;·&nbsp; Common room &amp; fireplace &nbsp;·&nbsp; 216 years of Vermont hospitality
+          </p>
+          <div class="cta-buttons fade-up fade-up-delay-2">
+            <!-- Replace href with your actual booking platform URL -->
+            <a href="https://v2.reservationkey.com/87810/reserve/" target="_blank" rel="noopener" class="btn btn-gold btn-lg">Book Online Now</a>
+            <a href="contact.html" class="btn btn-white btn-lg">Call or Email Us</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>McIndoe Falls Inn</h3>
+          <p class="footer-brand-sub">Vermont's Northeast Kingdom</p>
+          <p>A 216-year-old Greek Revival bed &amp; breakfast in Barnet, Vermont. Family-owned for over 50 years.</p>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>4586 US Route 5, Barnet, Vermont 05050</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.67 19.79 19.79 0 01.22 1.07a2 2 0 012-2.17H5.5a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2.03z"/></svg>
+            <a href="tel:+18026332240">802-633-2240</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="our-inn.html">The Inn</a></li>
+            <li><a href="accommodations.html">Rooms &amp; Apartments</a></li>
+            <li><a href="local-area.html">Local Area</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Accommodations</h4>
+          <ul class="footer-links">
+            <li><a href="accommodations.html#rooms">Inn Rooms (7)</a></li>
+            <li><a href="accommodations.html#apartments">Full Apartments (2)</a></li>
+            <li><a href="accommodations.html#apartments">The Loft</a></li>
+            <li><a href="accommodations.html#policies">Policies</a></li>
+            <li><a href="https://v2.reservationkey.com/87810/reserve/" target="_blank" rel="noopener">Book Now</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Season</h4>
+          <div class="footer-season-block">
+            <div class="season-label">Open</div>
+            <strong>May 1 – October 31</strong>
+          </div>
+          <div class="social-links" style="margin-top:24px;">
+            <a href="https://www.facebook.com/McIndoeFallsInn/" class="social-link" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2025 McIndoe Falls Inn &nbsp;·&nbsp; Barnet, Vermont</span>
+        <span>Built with care for Vermont's Northeast Kingdom</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
