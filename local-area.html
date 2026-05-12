@@ -257,8 +257,16 @@
       }
       .place-card-featured .place-card-img {
         width: 100%;
-        height: 220px;
+        height: 240px;
+        min-height: 240px;
         border-radius: 0;
+        overflow: hidden;
+      }
+      .place-card-featured .place-card-img img {
+        width: 100%;
+        height: 240px;
+        object-fit: cover;
+        display: block;
       }
       .dining-list-section { grid-template-columns: 1fr; }
       .seasons-strip { grid-template-columns: 1fr 1fr; }
