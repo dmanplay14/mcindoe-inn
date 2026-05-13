@@ -1377,19 +1377,39 @@ p  { font-size: 1.0rem; line-height: 1.8; color: var(--text-body); }
   .grid-4 { grid-template-columns: 1fr 1fr; }
   .footer-grid { grid-template-columns: 1fr; gap: 32px; }
 
-  /* ─── Hero ─── */
+  /* ─── Hero: stacked layout on mobile ─── */
   .hero {
     height: auto;
-    min-height: 0;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
   }
   .hero-bg {
-    background-position: center center;
+    position: relative;
+    inset: auto;
+    flex-shrink: 0;
+    width: 100%;
+    aspect-ratio: 3/2;
     background-size: cover;
+    background-position: center center;
+    transform: none !important;
+    transition: none;
+  }
+  .hero-overlay {
+    position: absolute;
+    bottom: auto;
+    height: calc(100vw * 0.667);
   }
   .hero-content {
-    padding-top: 56vw;
-    padding-bottom: 56px;
+    position: relative;
+    z-index: 3;
+    padding: 32px 20px 52px;
+    background: linear-gradient(rgba(26,40,24,.97), rgba(43,74,30,.95));
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
   }
+  .hero-scroll { display: none; }
   .hero-actions { flex-direction: column; align-items: center; }
   .hero-actions .btn { width: 100%; max-width: 300px; }
 
@@ -1455,7 +1475,7 @@ p  { font-size: 1.0rem; line-height: 1.8; color: var(--text-body); }
   .grid-4 { grid-template-columns: 1fr; }
 
   /* ─── Hero ─── */
-  .hero-content { padding-top: 58vw; padding-bottom: 48px; padding-left: 12px; padding-right: 12px; }
+  .hero-content { padding: 28px 12px 44px; }
   .hero-eyebrow { font-size: .65rem; gap: 8px; }
   .hero-eyebrow::before,
   .hero-eyebrow::after { width: 20px; }
