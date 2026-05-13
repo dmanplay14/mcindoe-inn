@@ -368,15 +368,16 @@ p  { font-size: 1.0rem; line-height: 1.8; color: var(--text-body); }
 }
 .hero-eyebrow {
   font-family: var(--font-sans);
-  font-size: .75rem;
-  letter-spacing: .25em;
+  font-size: .82rem;
+  letter-spacing: .28em;
   text-transform: uppercase;
-  color: var(--gold-light);
+  color: #f0d080;
   margin-bottom: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 14px;
+  text-shadow: 0 1px 10px rgba(0,0,0,.8), 0 0 30px rgba(0,0,0,.5);
 }
 .hero-eyebrow::before,
 .hero-eyebrow::after {
@@ -384,7 +385,8 @@ p  { font-size: 1.0rem; line-height: 1.8; color: var(--text-body); }
   display: block;
   width: 40px;
   height: 1px;
-  background: var(--gold-light);
+  background: #f0d080;
+  box-shadow: 0 0 6px rgba(240,208,128,.6);
 }
 .hero h1 {
   color: var(--white);
@@ -416,18 +418,20 @@ p  { font-size: 1.0rem; line-height: 1.8; color: var(--text-body); }
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  color: rgba(255,255,255,.6);
-  font-size: .7rem;
-  letter-spacing: .15em;
+  color: rgba(255,255,255,.92);
+  font-size: .72rem;
+  letter-spacing: .2em;
   text-transform: uppercase;
+  text-shadow: 0 1px 8px rgba(0,0,0,.9);
   animation: bounce 2s infinite;
 }
 .hero-scroll-arrow {
   width: 20px;
   height: 20px;
-  border-right: 1px solid rgba(255,255,255,.5);
-  border-bottom: 1px solid rgba(255,255,255,.5);
+  border-right: 2px solid rgba(255,255,255,.85);
+  border-bottom: 2px solid rgba(255,255,255,.85);
   transform: rotate(45deg);
+  filter: drop-shadow(0 1px 4px rgba(0,0,0,.8));
 }
 @keyframes bounce {
   0%, 100% { transform: translateX(-50%) translateY(0); }
